@@ -5,34 +5,52 @@ import ThemeToggle from "./ThemeToggle";
 
 function Navbar() {
   return (
-    <div className="navbar">
+    <div className="w-full sticky top-0 z-50 bg-light-bg dark:bg-dark-bg">
       {/* Navbar Container */}
-      <div className="navbar-container">
-        <div className="navbar-header">
-          <div className="navbar-brand">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="h-[64px] flex justify-between items-center border-b border-primary">
+          <div className="flex items-center space-x-3">
             <img src={logo} alt="Logo" className="h-10 w-auto" />
-            <span className="text-sm text-white hidden sm:inline">
+            <span className="text-sm text-black dark:text-white hidden sm:inline">
               Software & Full-Stack Developer | C# · React · WPF
             </span>
           </div>
-          
-          <nav className="navbar-link-group">
-            <Link to="/home" className="nav-link">
+
+          <nav className="flex items-center space-x-6">
+            <Link
+              to="/home"
+              className="text-black dark:text-white text-sm hover:text-primary-alt transition-colors duration-300"
+            >
               Home
             </Link>
-            <Link to="/projects" className="nav-link">
+            <Link
+              to="/projects"
+              className="text-black dark:text-white text-sm hover:text-primary-alt transition-colors duration-300"
+            >
               Projects
             </Link>
-            <Link to="/services" className="nav-link">
+            <Link
+              to="/services"
+              className="text-black dark:text-white text-sm hover:text-primary-alt transition-colors duration-300"
+            >
               Services
             </Link>
-            <Link to="/consultation" className="nav-link">
+            <Link
+              to="/consultation"
+              className="text-black dark:text-white text-sm hover:text-primary-alt transition-colors duration-300"
+            >
               Consultation
             </Link>
-            <Link to="/contact" className="nav-link">
+            <Link
+              to="/contact"
+              className="text-black dark:text-white text-sm hover:text-primary-alt transition-colors duration-300"
+            >
               Contact
             </Link>
-            <Link to="/about" className="nav-link">
+            <Link
+              to="/about"
+              className="text-black dark:text-white text-sm hover:text-primary-alt transition-colors duration-300"
+            >
               About
             </Link>
             <ThemeToggle />
@@ -41,9 +59,9 @@ function Navbar() {
       </div>
 
       {/* Divider Lines */}
-      <div className="navbar-container">
-        <div className="section-divider" />
-        <div className="section-divider-white" />
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="w-full h-[2px] bg-gray-800 dark:bg-white mb-[1px]" />
+        <div className="w-full h-[1px] bg-gray-400 dark:bg-primary-alt" />
       </div>
     </div>
   );

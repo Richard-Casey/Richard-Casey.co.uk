@@ -2,10 +2,10 @@ import React from "react";
 
 function SectionDivider() {
   return (
-    <div className="section-divider-wrapper">
-      <div className="section-divider-container">
-        <div className="section-divider-primary" />
-        <div className="section-divider-secondary" />
+    <div className="my-12">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="w-full h-[2px] bg-primary mb-[2px]" />
+        <div className="w-full h-[1px] bg-white" />
       </div>
     </div>
   );

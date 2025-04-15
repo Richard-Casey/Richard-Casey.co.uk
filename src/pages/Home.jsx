@@ -8,7 +8,7 @@ import SectionDivider from "../components/SectionDivider";
 function Home() {
   return (
     <motion.div
-      className="w-full min-h-screen bg-white dark:bg-black text-white dark:text-white px-6"
+    className="w-full min-h-screen bg-light-bg dark:bg-dark-bg text-black dark:text-white px-6 transition-colors duration-300"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -18,20 +18,18 @@ function Home() {
 
       {/* Hero Section */}
       <section className="text-center mt-10">
-        <h1 className="text-4xl font-bold mb-2">Hi, I’m Richard Casey</h1>
-        <p className="text-lg text-gray-300">
+        <h1 className="text-4xl text-gray-800 dark:text-gray-300
+">
           Software & Full-Stack Developer | C# · React · WPF · MongoDB
-        </p>
+        </h1>
       </section>
 
       <SectionDivider />
 
       {/* About Me Section */}
       <section className="mt-16 max-w-4xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-4 text-[var(--primary-blue-alt)]">
-          About Me
-        </h2>
-        <p className="text-gray-300 leading-relaxed">
+        <h2 className="text-2xl font-semibold mb-4 text-primary-alt">About Me</h2>
+        <p className="text-gray-800 dark:text-gray-300 leading-relaxed">
           I’m a Suffolk-based developer with a passion for honest, effective,
           and efficient software. With a strong background in C#, React, and
           full-stack development, I enjoy helping people solve real-world
@@ -45,14 +43,12 @@ function Home() {
 
       {/* Latest Projects Section */}
       <section className="mt-16 max-w-6xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-6 text-[var(--primary-blue-alt)]">
-          Latest Projects
-        </h2>
+        <h2 className="text-2xl font-semibold mb-6 text-primary-alt">Latest Projects</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {projects.slice(-3).map((project) => (
             <div
               key={project.id}
-              className="bg-[#f2f2f2] dark:bg-[#1a1a1a] border border-[var(--primary-blue-alt)] rounded-lg p-4 shadow-md flex flex-col justify-between"
+              className="bg-light-bg dark:bg-dark-bg border border-primary-alt rounded-lg p-4 shadow-md flex flex-col justify-between"
             >
               {project.image && (
                 <img
@@ -62,7 +58,7 @@ function Home() {
                 />
               )}
               <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-              <p className="text-gray-400 text-sm">{project.subtitle}</p>
+              <p className="text-gray-700 dark:text-gray-400 text-sm">{project.subtitle}</p>
             </div>
           ))}
         </div>
@@ -70,7 +66,7 @@ function Home() {
         <div className="text-center mt-6">
           <Link
             to="/projects"
-            className="text-[var(--primary-blue-alt)] hover:underline text-sm"
+            className="text-primary-alt hover:underline text-sm"
           >
             View all projects →
           </Link>
@@ -81,10 +77,10 @@ function Home() {
 
       {/* Services Section */}
       <section className="mt-16 max-w-4xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-4 text-[var(--primary-blue-alt)]">
+        <h2 className="text-2xl font-semibold mb-4 text-primary-alt">
           Services Offered
         </h2>
-        <ul className="list-disc pl-5 text-gray-300 space-y-2">
+        <ul className="list-disc pl-5 text-gray-800 dark:text-gray-300 space-y-2">
           <li>Custom Software Development</li>
           <li>Web Applications (React, Tailwind, MongoDB)</li>
           <li>Game Prototypes & Indie Game Projects</li>
@@ -97,20 +93,19 @@ function Home() {
 
       {/* Contact CTA */}
       <section className="mt-16 text-center">
-        <h2 className="text-2xl font-semibold text-[var(--primary-blue-alt)]">
+        <h2 className="text-2xl font-semibold text-primary-alt">
           Let’s Build Something
         </h2>
-        <p className="text-gray-400 my-4">
+        <p className="text-gray-700 dark:text-gray-400 my-4">
           Got an idea or need some help bringing it to life?
         </p>
         <Link
           to="/contact"
-          className="inline-block bg-[var(--primary-blue-alt)] text-white dark:text-white font-bold py-2 px-6 rounded hover:bg-[#009de5] transition"
+          className="inline-block bg-primary-alt text-black dark:text-white font-bold py-2 px-6 rounded hover:bg-primary transition"
         >
           Contact Me
         </Link>
       </section>
-      
     </motion.div>
   );
 }

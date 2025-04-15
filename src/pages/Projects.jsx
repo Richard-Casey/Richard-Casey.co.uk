@@ -19,13 +19,13 @@ function Projects() {
     <>
       <Navbar />
       <motion.div
-        className="w-full min-h-screen bg-white dark:bg-black text-white dark:text-white px-6 py-10"
+        className="w-full min-h-screen bg-white dark:bg-black text-white px-6 py-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1 className="text-3xl font-bold text-center text-[var(--primary-blue-alt)] mb-10">
+        <h1 className="text-3xl font-bold text-center text-primary-alt mb-10">
           Projects
         </h1>
 
@@ -37,7 +37,7 @@ function Projects() {
               onClick={() => setActiveTag(tag)}
               className={`px-4 py-1 rounded-full text-sm border transition ${
                 activeTag === tag
-                  ? "bg-[var(--primary-blue-alt)] ttext-black dark:text-white dark:text-white font-bold"
+                  ? "bg-primary-alt text-black dark:text-white font-bold"
                   : "border-gray-600 text-gray-300 hover:bg-gray-800"
               }`}
             >
@@ -54,7 +54,7 @@ function Projects() {
             <Link
               to={`/projects/${project.slug}`}
               key={project.id}
-              className="bg-[#f2f2f2] dark:bg-[#1a1a1a] rounded-lg p-4 shadow-md flex flex-col justify-between hover:shadow-lg transition"
+              className="bg-light-bg dark:bg-[#1a1a1a] rounded-lg p-4 shadow-md flex flex-col justify-between hover:shadow-lg transition"
             >
               <div>
                 {project.image && (
@@ -64,7 +64,7 @@ function Projects() {
                     className="w-full h-48 object-cover rounded mb-4"
                   />
                 )}
-                <h2 className="text-xl font-semibold text-white dark:text-white mb-1">
+                <h2 className="text-xl font-semibold text-white mb-1">
                   {project.title}
                 </h2>
                 <p className="text-sm text-gray-400 mb-2">{project.subtitle}</p>
@@ -75,7 +75,7 @@ function Projects() {
                   {project.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="bg-[var(--primary-blue-alt)] text-black dark:text-white dark:text-white px-2 py-1 text-xs rounded"
+                      className="bg-primary-alt text-black dark:text-white px-2 py-1 text-xs rounded"
                     >
                       {tag}
                     </span>
@@ -87,7 +87,7 @@ function Projects() {
                 {project.github && (
                   <a
                     href={project.github}
-                    className="text-sm text-[var(--primary-blue-alt)] hover:underline"
+                    className="text-sm text-primary-alt hover:underline"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -97,7 +97,7 @@ function Projects() {
                 {project.liveDemo && (
                   <a
                     href={project.liveDemo}
-                    className="text-sm text-[var(--primary-blue-alt)] hover:underline"
+                    className="text-sm text-primary-alt hover:underline"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

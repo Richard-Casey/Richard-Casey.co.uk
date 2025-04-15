@@ -1,0 +1,118 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import projects from "../data/projects";
+import SectionDivider from "../components/SectionDivider";
+
+function Home() {
+  return (
+    <motion.div
+      className="w-full min-h-screen bg-white dark:bg-black text-white dark:text-white px-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6 }}
+    >
+      <Navbar />
+
+      {/* Hero Section */}
+      <section className="text-center mt-10">
+        <h1 className="text-4xl font-bold mb-2">Hi, I’m Richard Casey</h1>
+        <p className="text-lg text-gray-300">
+          Software & Full-Stack Developer | C# · React · WPF · MongoDB
+        </p>
+      </section>
+
+      <SectionDivider />
+
+      {/* About Me Section */}
+      <section className="mt-16 max-w-4xl mx-auto">
+        <h2 className="text-2xl font-semibold mb-4 text-[var(--primary-blue-alt)]">
+          About Me
+        </h2>
+        <p className="text-gray-300 leading-relaxed">
+          I’m a Suffolk-based developer with a passion for honest, effective,
+          and efficient software. With a strong background in C#, React, and
+          full-stack development, I enjoy helping people solve real-world
+          problems and turning ideas into working solutions. Whether it’s a game
+          prototype, internal tool, or bespoke feature, I’ll find a way to make
+          it happen.
+        </p>
+      </section>
+
+      <SectionDivider />
+
+      {/* Latest Projects Section */}
+      <section className="mt-16 max-w-6xl mx-auto">
+        <h2 className="text-2xl font-semibold mb-6 text-[var(--primary-blue-alt)]">
+          Latest Projects
+        </h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {projects.slice(-3).map((project) => (
+            <div
+              key={project.id}
+              className="bg-[#f2f2f2] dark:bg-[#1a1a1a] border border-[var(--primary-blue-alt)] rounded-lg p-4 shadow-md flex flex-col justify-between"
+            >
+              {project.image && (
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 object-cover rounded mb-4"
+                />
+              )}
+              <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+              <p className="text-gray-400 text-sm">{project.subtitle}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center mt-6">
+          <Link
+            to="/projects"
+            className="text-[var(--primary-blue-alt)] hover:underline text-sm"
+          >
+            View all projects →
+          </Link>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* Services Section */}
+      <section className="mt-16 max-w-4xl mx-auto">
+        <h2 className="text-2xl font-semibold mb-4 text-[var(--primary-blue-alt)]">
+          Services Offered
+        </h2>
+        <ul className="list-disc pl-5 text-gray-300 space-y-2">
+          <li>Custom Software Development</li>
+          <li>Web Applications (React, Tailwind, MongoDB)</li>
+          <li>Game Prototypes & Indie Game Projects</li>
+          <li>Workflow Tools (C# · WPF · Internal Solutions)</li>
+          <li>Consultation for Technical Projects</li>
+        </ul>
+      </section>
+
+      <SectionDivider />
+
+      {/* Contact CTA */}
+      <section className="mt-16 text-center">
+        <h2 className="text-2xl font-semibold text-[var(--primary-blue-alt)]">
+          Let’s Build Something
+        </h2>
+        <p className="text-gray-400 my-4">
+          Got an idea or need some help bringing it to life?
+        </p>
+        <Link
+          to="/contact"
+          className="inline-block bg-[var(--primary-blue-alt)] text-white dark:text-white font-bold py-2 px-6 rounded hover:bg-[#009de5] transition"
+        >
+          Contact Me
+        </Link>
+      </section>
+      
+    </motion.div>
+  );
+}
+
+export default Home;

@@ -1,13 +1,197 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+  --primary-blue: #009de5;
+  --primary-blue-alt: #00bdf7;
+  --letterbox-black: #0a0a0a;
+  --silver-line: linear-gradient(to right, #666, #C0C0C0, #666);
+  --gradient-top: linear-gradient(to b, #1a1a1a, black);
+  --gradient-bottom: linear-gradient(to t, #1a1a1a, black);
+  --hover-shadow: inset 0px 0px 35px var(--primary-blue);
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Space Mono', monospace;
+  background-color: var(--tw-bg-opacity, 1) theme('colors.dark-bg');
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Space Mono', monospace;
+}
+
+/* Custom button style */
+.enter-button {
+  width: 10em;
+  position: relative;
+  height: 3.5em;
+  border: 3px ridge var(--primary-blue);
+  outline: none;
+  background-color: transparent;
+  color: white;
+  transition: 1s;
+  border-radius: 0.1em;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 50;
+}
+
+.enter-button::after,
+.enter-button::before {
+  content: "";
+  position: absolute;
+  left: 3%;
+  width: 95%;
+  height: 40%;
+  background-color: var(--letterbox-black);
+  transition: 0.5s;
+  transform-origin: center;
+  z-index: -1;
+}
+
+.enter-button::after {
+  top: -10px;
+}
+
+.enter-button::before {
+  top: 80%;
+}
+
+.enter-button:hover::before,
+.enter-button:hover::after {
+  transform: scale(0);
+}
+
+.enter-button:hover {
+  box-shadow: var(--hover-shadow);
+}
+
+/* Generic Page Section */
+.page-section {
+  @apply mt-16 max-w-6xl mx-auto px-4;
+}
+
+.section-heading {
+  @apply text-2xl font-semibold mb-4 text-primary-blue-alt;
+}
+
+.section-divider {
+  @apply w-full h-[2px] bg-black mb-[1px];
+}
+
+.section-divider-white {
+  @apply w-full h-[1px] bg-white;
+}
+
+/* Reusable Navbar Styles */
+.navbar {
+  @apply w-full sticky top-0 z-50 bg-[var(--letterbox-black)];
+}
+
+.navbar-container {
+  @apply max-w-7xl mx-auto px-4;
+}
+
+.navbar-header {
+  @apply h-[64px] flex justify-between items-center border-b border-[var(--primary-blue)];
+}
+
+.navbar-brand {
+  @apply flex items-center space-x-3;
+}
+
+.navbar-link-group {
+  @apply space-x-6;
+}
+
+/* Reuse existing nav-link style */
+.nav-link {
+  @apply text-white text-sm hover:text-[var(--primary-blue-alt)] transition-colors duration-300;
+}
+
+/* Section Divider Custom Classes */
+.section-divider-wrapper {
+  @apply my-12;
+}
+
+.section-divider-container {
+  @apply max-w-7xl mx-auto px-4;
+}
+
+.section-divider-primary {
+  @apply w-full h-[2px] bg-[var(--primary-blue)] mb-[2px];
+}
+
+.section-divider-secondary {
+  @apply w-full h-[1px] bg-white;
+}
+
+/* Theme Toggle Styles */
+.theme-toggle-btn {
+  @apply ml-4 p-2 rounded transition hover:bg-gray-700;
+}
+
+.theme-toggle-icon {
+  @apply w-5 h-5;
+}
+/* About Page Wrapper */
+.about-page {
+  @apply w-full min-h-screen px-6 py-10 bg-white dark:bg-black text-white;
+}
+
+/* Content Container */
+.about-container {
+  @apply max-w-5xl mx-auto;
+}
+
+/* Page Title */
+.about-title {
+  @apply text-3xl font-bold mb-4 text-[var(--primary-blue-alt)];
+}
+
+/* Paragraph */
+.about-paragraph {
+  @apply text-gray-300 leading-relaxed mb-6;
+}
+
+/* Section Header (used in timeline and toolset) */
+.about-section-header {
+  @apply text-2xl font-semibold mb-4 text-[var(--primary-blue-alt)];
+}
+
+/* Timeline List */
+.about-timeline-list {
+  @apply text-sm text-gray-400 space-y-2 border-l border-[var(--primary-blue-alt)] pl-4;
+}
+
+/* Timeline Year Label */
+.timeline-year {
+  @apply text-white dark:text-white;
+}
+
+/* Tool Badge */
+.tool-badge {
+  @apply bg-[var(--primary-blue-alt)] text-black dark:text-white px-3 py-1 rounded-full text-sm font-medium;
+}
+
+/* Link Section Container */
+.about-links {
+  @apply mt-10 flex flex-wrap gap-4 items-center;
+}
+
+/* Download CV Button */
+.download-cv-btn {
+  @apply bg-[var(--primary-blue-alt)] text-black dark:text-white font-semibold py-2 px-4 rounded hover:opacity-90;
+}
+
+/* Regular Link */
+.link-item {
+  @apply underline text-sm text-white dark:text-white hover:text-[var(--primary-blue-alt)];
 }

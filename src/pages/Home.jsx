@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import projects from "../data/projects";
 import SectionDivider from "../components/SectionDivider";
+import HeroBackground from "../components/HeroBackground";
+import SectionDividerHero from "../components/SectionDividerHero";
+import Typewriter from "../components/Typewriter";
 
 function Home() {
   return (
@@ -17,19 +20,28 @@ function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="text-center mt-10">
-        <h1
-          className="text-4xl text-gray-800 dark:text-gray-300
-"
-        >
-          Software & Full-Stack Developer | C# · React · WPF · MongoDB
-        </h1>
+      <section className="relative z-10 max-w-7xl mb-px mx-auto px-4">
+        <div className="relative rounded-3xl border-2 border-black dark:border-white overflow-hidden shadow-lg">
+          {/* Blue wash */}
+          <div className="absolute inset-0 bg-primary opacity-10 mix-blend-multiply z-0 pointer-events-none" />
+
+          {/* Image background */}
+          <HeroBackground />
+
+          {/* Text block */}
+          <div className="relative z-10 flex items-center justify-center min-h-[6rem] sm:min-h-[8rem] md:min-h-[10rem] px-6 text-center backdrop-blur-sm">
+            <Typewriter
+              text="Software & Full-Stack Developer | C# · React · WPF"
+              speed={40}
+            />
+          </div>
+        </div>
       </section>
 
-      <SectionDivider />
+      <SectionDividerHero />
 
       {/* About Me Section */}
-      <section className="mt-16 max-w-4xl mx-auto">
+      <section className="mt-8 max-w-4xl mx-auto">
         <h2 className="text-2xl font-semibold mb-4 text-primary-alt">
           About Me
         </h2>
@@ -46,35 +58,36 @@ function Home() {
       <SectionDivider />
 
       {/* Latest Projects Section */}
-      <section className="mt-16 max-w-6xl mx-auto">
+      <section className="mt-8 max-w-6xl mx-auto">
         <h2 className="text-2xl font-semibold mb-6 text-primary-alt">
           Latest Projects
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
-        {projects.slice(-3).map((project) => (
-  <div
-    key={project.id}
-    className="p-1 border-2 border-black dark:border-white rounded-lg"
-  >
-    <div className="glass-blue p-4 border-2 border-primary rounded-lg shadow-md flex flex-col justify-between">
-      {project.image && (
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-48 object-cover rounded border-2 border-black dark:border-white mb-4"
-        />
-      )}
-      <div className="glass-white mt-auto p-3 h-24 flex flex-col justify-center text-center border-2 border-black dark:border-white rounded">
-        <h3 className="font-bold text-lg sm:text-base truncate underline">{project.title}</h3>
-        <p className="text-sm mt-1">{project.subtitle}</p>
-      </div>
-    </div>
-  </div>
-))}
-
+          {projects.slice(-3).map((project) => (
+            <div
+              key={project.id}
+              className="p-1 border-2 border-black dark:border-white rounded-lg"
+            >
+              <div className="glass-blue p-4 border-2 border-primary rounded-lg shadow-md flex flex-col justify-between">
+                {project.image && (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-48 object-cover rounded border-2 border-black dark:border-white mb-4"
+                  />
+                )}
+                <div className="glass-white mt-auto p-3 h-24 flex flex-col justify-center text-center border-2 border-black dark:border-white rounded">
+                  <h3 className="font-bold text-lg sm:text-base truncate underline">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm mt-1">{project.subtitle}</p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
-        <div className="text-center mt-6">
+        <div className="text-center mt-8">
           <Link
             to="/projects"
             className="text-primary-alt hover:underline text-sm"
@@ -87,7 +100,7 @@ function Home() {
       <SectionDivider />
 
       {/* Services Section */}
-      <section className="mt-16 max-w-4xl mx-auto">
+      <section className="mt-8 max-w-4xl mx-auto">
         <h2 className="text-2xl font-semibold mb-4 text-primary-alt">
           Services Offered
         </h2>
@@ -103,7 +116,7 @@ function Home() {
       <SectionDivider />
 
       {/* Contact CTA */}
-      <section className="mt-16 text-center">
+      <section className="mt-8 text-center">
         <h2 className="text-2xl font-semibold text-primary-alt">
           Let’s Build Something
         </h2>

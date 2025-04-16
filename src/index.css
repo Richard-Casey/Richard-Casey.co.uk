@@ -103,4 +103,24 @@ code {
   color: black; /* 👈 Add this */
 }
 
+.text-outline {
+  color: white;
+  text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+}
 
+@keyframes blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 2s step-start infinite;
+}

@@ -74,3 +74,33 @@ code {
 .section-divider-white {
   @apply w-full h-[1px] bg-white;
 }
+
+/* Blue/grey glassmorphism based on theme */
+.glass-blue {
+  @apply border-2 rounded-lg backdrop-blur-md shadow-md transition-colors duration-300;
+}
+
+.glass-blue {
+  @apply border-2 rounded-lg backdrop-blur-md shadow-md transition-colors duration-300;
+  background: rgba(0, 0, 0, 0.329); /* slightly deeper grey for light mode */
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+  /* ❌ remove border-color override here */
+}
+
+.dark .glass-blue {
+  background: rgba(0, 157, 229, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 157, 229, 0.25);
+  border-color: #009de5; /* primary blue in dark mode */
+}
+
+
+.glass-white {
+  background: rgba(255, 255, 255, 0.822);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  color: black; /* 👈 Add this */
+}
+
+

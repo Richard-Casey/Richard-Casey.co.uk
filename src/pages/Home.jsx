@@ -8,7 +8,7 @@ import SectionDivider from "../components/SectionDivider";
 function Home() {
   return (
     <motion.div
-    className="w-full min-h-screen bg-light-bg dark:bg-dark-bg text-black dark:text-white px-6 transition-colors duration-300"
+      className="w-full min-h-screen bg-light-bg dark:bg-dark-bg text-black dark:text-white px-6 transition-colors duration-300"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -18,8 +18,10 @@ function Home() {
 
       {/* Hero Section */}
       <section className="text-center mt-10">
-        <h1 className="text-4xl text-gray-800 dark:text-gray-300
-">
+        <h1
+          className="text-4xl text-gray-800 dark:text-gray-300
+"
+        >
           Software & Full-Stack Developer | C# · React · WPF · MongoDB
         </h1>
       </section>
@@ -28,7 +30,9 @@ function Home() {
 
       {/* About Me Section */}
       <section className="mt-16 max-w-4xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-4 text-primary-alt">About Me</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-primary-alt">
+          About Me
+        </h2>
         <p className="text-gray-800 dark:text-gray-300 leading-relaxed">
           I’m a Suffolk-based developer with a passion for honest, effective,
           and efficient software. With a strong background in C#, React, and
@@ -43,24 +47,31 @@ function Home() {
 
       {/* Latest Projects Section */}
       <section className="mt-16 max-w-6xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-6 text-primary-alt">Latest Projects</h2>
+        <h2 className="text-2xl font-semibold mb-6 text-primary-alt">
+          Latest Projects
+        </h2>
         <div className="grid md:grid-cols-3 gap-6">
-          {projects.slice(-3).map((project) => (
-            <div
-              key={project.id}
-              className="bg-light-bg dark:bg-dark-bg border border-primary-alt rounded-lg p-4 shadow-md flex flex-col justify-between"
-            >
-              {project.image && (
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover rounded mb-4"
-                />
-              )}
-              <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-              <p className="text-gray-700 dark:text-gray-400 text-sm">{project.subtitle}</p>
-            </div>
-          ))}
+        {projects.slice(-3).map((project) => (
+  <div
+    key={project.id}
+    className="p-1 border-2 border-black dark:border-white rounded-lg"
+  >
+    <div className="glass-blue p-4 border-2 border-primary rounded-lg shadow-md flex flex-col justify-between">
+      {project.image && (
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-48 object-cover rounded border-2 border-black dark:border-white mb-4"
+        />
+      )}
+      <div className="glass-white mt-auto p-3 h-24 flex flex-col justify-center text-center border-2 border-black dark:border-white rounded">
+        <h3 className="font-bold text-lg sm:text-base truncate underline">{project.title}</h3>
+        <p className="text-sm mt-1">{project.subtitle}</p>
+      </div>
+    </div>
+  </div>
+))}
+
         </div>
 
         <div className="text-center mt-6">

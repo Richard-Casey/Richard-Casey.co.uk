@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/Logo1.png";
 import ThemeToggle from "./ThemeToggle";
+import SectionDividerThin from "./SectionDividerThin";
 
 function Navbar() {
   return (
     <div className="w-full sticky top-0 z-50 bg-light-bg dark:bg-dark-bg">
       {/* Navbar Container */}
       <div className="max-w-7xl mx-auto px-4">
-        <div className="h-[64px] flex justify-between items-center border-b border-primary">
+      <div className="h-[64px] flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <img src={logo} alt="Logo" className="h-10 w-auto" />
             <span className="text-sm text-black dark:text-white hidden sm:inline">
@@ -59,10 +60,8 @@ function Navbar() {
       </div>
 
       {/* Divider Lines */}
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="w-full h-[2px] bg-gray-800 dark:bg-white mb-[1px]" />
-        <div className="w-full h-[1px] bg-gray-400 dark:bg-primary-alt" />
-      </div>
+      <SectionDividerThin />
+
     </div>
   );
 }

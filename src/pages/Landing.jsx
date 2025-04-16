@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import heroImage from "../assets/landing.png";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import LandingButton from "../components/LandingButton";
 
 function Landing() {
   const navigate = useNavigate();
@@ -37,14 +38,16 @@ function Landing() {
       {/* Image Background Layer */}
       <div className="absolute inset-0 z-0" ref={imageRef}>
         <div className="w-[130vw] h-[150vh] absolute left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2">
-          <img
-            src={heroImage}
-            alt="Landing"
-            className="w-full h-full object-cover transition-transform duration-300 ease-out grayscale brightness-75 mix-blend-multiply"
-            style={{
-              transform: `translate(calc(${offset.x}px - -11%), calc(${offset.y}px + 30%))`,
-            }}
-          />
+        <img
+  src={heroImage}
+  alt="Landing"
+  className="w-full h-full object-cover transition-transform duration-300 ease-out grayscale brightness-75 mix-blend-multiply"
+  style={{
+    transform: `translate(calc(${offset.x}px - -11%), calc(${offset.y}px + 30%))`,
+    filter: "brightness(0.7) contrast(1.3) saturate(1.6)",
+  }}
+/>
+
         </div>
       </div>
 
@@ -60,9 +63,7 @@ function Landing() {
       <div className="absolute bottom-0 left-0 w-full h-[20%] z-10 bg-gradient-bottom">
         <div className="absolute top-0 left-0 w-full h-[3px] bg-silver-line" />
         <div className="flex justify-center items-start pt-3 relative z-20">
-          <button className="enter-button" onClick={() => navigate("/home")}>
-            Enter Site
-          </button>
+        <LandingButton onClick={() => navigate("/home")} />
         </div>
       </div>
 

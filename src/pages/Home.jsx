@@ -7,6 +7,8 @@ import SectionDivider from "../components/SectionDivider";
 import HeroBackground from "../components/HeroBackground";
 import SectionDividerHero from "../components/SectionDividerHero";
 import Typewriter from "../components/Typewriter";
+import profileImage from "../assets/mecropped2.png";
+import symbolImage from "../assets/Symbol1.png";
 
 function Home() {
   return (
@@ -23,17 +25,23 @@ function Home() {
       <section className="relative z-10 max-w-7xl mb-px mx-auto px-4">
         <div className="relative rounded-3xl border-2 border-black dark:border-white overflow-hidden shadow-lg">
           {/* Blue wash */}
-          <div className="absolute inset-0 bg-primary opacity-10 mix-blend-multiply z-0 pointer-events-none" />
+          <div className="absolute inset-0 bg-primary opacity-50 mix-blend-multiply z-0 pointer-events-none" />
 
           {/* Image background */}
           <HeroBackground />
 
           {/* Text block */}
-          <div className="relative z-10 flex items-center justify-center min-h-[6rem] sm:min-h-[8rem] md:min-h-[10rem] px-6 text-center backdrop-blur-sm">
-            <Typewriter
-              text="Software & Full-Stack Developer | C# · React · WPF"
-              speed={40}
-            />
+          <div className="relative z-10 flex items-center justify-center min-h-[6rem] sm:min-h-[8rem] md:min-h-[10rem] px-6 text-center">
+            {/* Blur layer below the text */}
+            <div className="absolute inset-0 backdrop-blur-sm bg-white/30 dark:bg-dark-bg/40 z-0" />
+
+            {/* Text layer */}
+            <div className="relative z-10">
+              <Typewriter
+                text="Software & Full-Stack Developer | C# · React · WPF"
+                speed={40}
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -41,18 +49,44 @@ function Home() {
       <SectionDividerHero />
 
       {/* About Me Section */}
-      <section className="mt-8 max-w-4xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-4 text-primary-alt">
-          About Me
-        </h2>
-        <p className="text-gray-800 dark:text-gray-300 leading-relaxed">
-          I’m a Suffolk-based developer with a passion for honest, effective,
-          and efficient software. With a strong background in C#, React, and
-          full-stack development, I enjoy helping people solve real-world
-          problems and turning ideas into working solutions. Whether it’s a game
-          prototype, internal tool, or bespoke feature, I’ll find a way to make
-          it happen.
-        </p>
+      <section className="mt-8 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 px-4">
+        {/* Image area with symbol background */}
+        <div className="relative w-35 h-35 md:w-48 md:h-48 flex-shrink-0 rounded-full border-[6px] border-primary overflow-hidden">
+          {/* Outer white/black ring */}
+          <div className="absolute inset-0 rounded-full border-[2px] border-black dark:border-white z-30" />
+
+          {/* Blue wash overlay */}
+          <div className="absolute inset-0 bg-primary opacity-20 mix-blend-multiply z-20 pointer-events-none rounded-full" />
+
+          {/* Profile image with fade mask */}
+          <img
+            src={profileImage}
+            alt="Richard Casey"
+            className="w-full h-full object-cover rounded-full fade-center z-30 relative"
+          />
+
+          {/* Symbol background */}
+          <img
+            src={symbolImage}
+            alt="Symbol"
+            className="absolute inset-0 w-full h-full object-contain opacity-50 z-0"
+          />
+        </div>
+
+        {/* Text content */}
+        <div className="flex-1 text-center md:text-left">
+          <h2 className="text-2xl font-semibold mb-4 text-primary-alt">
+            About Me
+          </h2>
+          <p className="text-gray-800 dark:text-gray-300 leading-relaxed">
+            I’m a Suffolk-based developer with a passion for honest, effective,
+            and efficient software. With a strong background in C#, React, and
+            full-stack development, I enjoy helping people solve real-world
+            problems and turning ideas into working solutions. Whether it’s a
+            game prototype, internal tool, or bespoke feature, I’ll find a way
+            to make it happen.
+          </p>
+        </div>
       </section>
 
       <SectionDivider />

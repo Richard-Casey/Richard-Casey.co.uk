@@ -9,6 +9,7 @@ import SectionDividerHero from "../components/SectionDividerHero";
 import Typewriter from "../components/Typewriter";
 import profileImage from "../assets/mecropped2.png";
 import symbolImage from "../assets/Symbol1.png";
+import SectionGlowBar from "../components/SectionGlowBar";
 
 function Home() {
   return (
@@ -78,7 +79,7 @@ function Home() {
           <h2 className="text-2xl font-semibold mb-4 text-primary-alt">
             About Me
           </h2>
-          <div className="mx-auto mt-1 mb-6 h-[4px] w-24 rounded-full bg-accent animate-glow" />
+          <SectionGlowBar />
 
           <p className="text-gray-800 dark:text-gray-300 leading-relaxed">
             I’m a Suffolk-based developer with a passion for honest, effective,

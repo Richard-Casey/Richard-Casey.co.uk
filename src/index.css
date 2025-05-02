@@ -177,7 +177,7 @@ code {
   background: linear-gradient(
     to right,
     rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.7) 50%,
+    rgba(255, 255, 255, 0.9) 50%,
     rgba(255, 255, 255, 0) 100%
   );
 }
@@ -190,11 +190,11 @@ code {
   background: linear-gradient(
     to right,
     rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.9) 50%,
     rgba(255, 255, 255, 0) 100%
   );
-  filter: blur(8px);
-  opacity: 0.6;
+  filter: blur(12px);
+  opacity: 0.7;
   animation: fadePulse 4s ease-in-out infinite;
   pointer-events: none;
 }
@@ -204,17 +204,17 @@ code {
   background: linear-gradient(
     to right,
     rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.8) 50%,
     rgba(255, 255, 255, 0) 100%
   );
 }
 
 @keyframes fadePulse {
   0%, 100% {
-    opacity: 0.3;
+    opacity: 0.5;
   }
   50% {
-    opacity: 0.8;
+    opacity: 1;
   }
 }
 

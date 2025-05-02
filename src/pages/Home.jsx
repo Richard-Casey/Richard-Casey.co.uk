@@ -2,7 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import projects from "../data/projects";
 import SectionDivider from "../components/SectionDivider";
 import HeroBackground from "../components/HeroBackground";
 import SectionDividerHero from "../components/SectionDividerHero";
@@ -10,8 +9,16 @@ import Typewriter from "../components/Typewriter";
 import profileImage from "../assets/mecropped2.png";
 import symbolImage from "../assets/Symbol1.png";
 import SectionGlowBar from "../components/SectionGlowBar";
+import useGitHubProjects from "../data/useGitHubProjects";
+import projectImageMap from "../data/projectImageMap";
+
+const topProjects = ["stock-and-shop", "the-other-half-hub-website", "encompass-work-tracker"];
 
 function Home() {
+  const { repos, loading } = useGitHubProjects(100);
+  
+
+
   return (
     <motion.div
       className="w-full min-h-screen bg-light-bg dark:bg-dark-bg text-black dark:text-white px-6 transition-colors duration-300"
@@ -21,7 +28,6 @@ function Home() {
       transition={{ duration: 0.6 }}
     >
       <Navbar />
-
       {/* Hero Section */}
       <section className="relative z-10 max-w-7xl mb-px mx-auto px-4">
         <div className="relative rounded-3xl border-2 border-black dark:border-white overflow-hidden shadow-lg">
@@ -46,9 +52,7 @@ function Home() {
           </div>
         </div>
       </section>
-
       <SectionDividerHero />
-
       {/* About Me Section */}
       <section className="mt-8 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 px-4">
         {/* Image area with symbol background */}
@@ -91,38 +95,107 @@ function Home() {
           </p>
         </div>
       </section>
-
       <SectionDivider />
+      {/* Top Projects Section */}
+      <section className="mt-8 max-w-6xl mx-auto">
+        <h2 className="text-2xl font-semibold mb-6 text-primary-alt">
+          Top Projects
+        </h2>
+        <SectionGlowBar />
+
+        {loading ? (
+          <p className="text-center text-gray-500 dark:text-gray-400">
+            Loading top projects...
+          </p>
+        ) : (
+          <div className="grid md:grid-cols-3 gap-6">
+            {repos
+              .filter((project) => topProjects.includes(project.slug))
+              .map((project) => {
+                const imageFile =
+                  projectImageMap[project.title] || `${project.title}.png`;
+
+                return (
+                  <div
+                    key={project.id}
+                    className="p-1 border-2 border-black dark:border-white rounded-lg"
+                  >
+                    <div className="glass-blue p-4 border-2 border-primary rounded-lg shadow-md flex flex-col justify-between">
+                      <img
+                        src={`/images/projects/${imageFile}`}
+                        alt={project.title}
+                        onError={(e) => {
+                          console.warn("Missing image for:", imageFile);
+                          if (!e.target.dataset.fallback) {
+                            e.target.dataset.fallback = true;
+                            e.target.src = "/images/projects/default.png";
+                          }
+                        }}
+                        className="w-full h-48 object-cover rounded border-2 border-black dark:border-white mb-4"
+                      />
+                      <div className="glass-white mt-auto p-3 h-24 flex flex-col justify-center text-center border-2 border-black dark:border-white rounded">
+                        <h3 className="font-bold text-lg sm:text-base truncate underline">
+                          {project.title}
+                        </h3>
+                        <p className="text-sm mt-1">{project.subtitle}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+        )}
+      </section>
 
       {/* Latest Projects Section */}
       <section className="mt-8 max-w-6xl mx-auto">
         <h2 className="text-2xl font-semibold mb-6 text-primary-alt">
           Latest Projects
         </h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          {projects.slice(-3).map((project) => (
-            <div
-              key={project.id}
-              className="p-1 border-2 border-black dark:border-white rounded-lg"
-            >
-              <div className="glass-blue p-4 border-2 border-primary rounded-lg shadow-md flex flex-col justify-between">
-                {project.image && (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover rounded border-2 border-black dark:border-white mb-4"
-                  />
-                )}
-                <div className="glass-white mt-auto p-3 h-24 flex flex-col justify-center text-center border-2 border-black dark:border-white rounded">
-                  <h3 className="font-bold text-lg sm:text-base truncate underline">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm mt-1">{project.subtitle}</p>
+        <SectionGlowBar />
+
+        {loading ? (
+          <p className="text-center text-gray-500 dark:text-gray-400">
+            Loading latest projects...
+          </p>
+        ) : (
+          <div className="grid md:grid-cols-3 gap-6">
+            {repos.map((project) => {
+              console.log("REPO DEBUG:", project.name, project.title);
+
+              const imageFile =
+                projectImageMap[project.title] || `${project.title}.png`;
+
+              return (
+                <div
+                  key={project.id}
+                  className="p-1 border-2 border-black dark:border-white rounded-lg"
+                >
+                  <div className="glass-blue p-4 border-2 border-primary rounded-lg shadow-md flex flex-col justify-between">
+                    <img
+                      src={`/images/projects/${imageFile}`}
+                      alt={project.title}
+                      onError={(e) => {
+                        console.warn("Missing image for:", imageFile);
+                        if (!e.target.dataset.fallback) {
+                          e.target.dataset.fallback = true;
+                          e.target.src = "/images/projects/default.png";
+                        }
+                      }}
+                      className="w-full h-48 object-cover rounded border-2 border-black dark:border-white mb-4"
+                    />
+                    <div className="glass-white mt-auto p-3 h-24 flex flex-col justify-center text-center border-2 border-black dark:border-white rounded">
+                      <h3 className="font-bold text-lg sm:text-base truncate underline">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm mt-1">{project.subtitle}</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              );
+            })}
+          </div>
+        )}
 
         <div className="text-center mt-8">
           <Link
@@ -135,12 +208,12 @@ function Home() {
       </section>
 
       <SectionDivider />
-
       {/* Services Section */}
       <section className="mt-8 max-w-4xl mx-auto">
         <h2 className="text-2xl font-semibold mb-4 text-primary-alt">
           Services Offered
         </h2>
+        <SectionGlowBar />
         <ul className="list-disc pl-5 text-gray-800 dark:text-gray-300 space-y-2">
           <li>Custom Software Development</li>
           <li>Web Applications (React, Tailwind, MongoDB)</li>
@@ -149,9 +222,7 @@ function Home() {
           <li>Consultation for Technical Projects</li>
         </ul>
       </section>
-
       <SectionDivider />
-
       {/* Contact CTA */}
       <section className="mt-8 text-center">
         <h2 className="text-2xl font-semibold text-primary-alt">

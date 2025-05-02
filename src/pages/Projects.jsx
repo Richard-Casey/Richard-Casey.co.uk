@@ -4,6 +4,7 @@ import projects from "../data/projects";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 import SectionDivider from "../components/SectionDivider";
+import SectionGlowBar from "../components/SectionGlowBar";
 
 function Projects() {
   const [activeTag, setActiveTag] = useState("All");
@@ -28,6 +29,7 @@ function Projects() {
         <h1 className="text-3xl font-bold text-center text-primary-alt mb-10">
           Projects
         </h1>
+
 
         {/* Tag Filters */}
         <div className="flex flex-wrap justify-center gap-3 mb-10">

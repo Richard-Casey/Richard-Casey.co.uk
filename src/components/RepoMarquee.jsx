@@ -8,7 +8,7 @@ function RepoMarquee({ repos }) {
 
     return (
         <div className="w-72 flex-shrink-0 p-1 border-2 border-black dark:border-white rounded-lg hover:scale-[1.05] transition-transform duration-300 mx-1">
-      <div className="bg-white/30 dark:bg-dark-bg/40 backdrop-blur-sm p-4 border-2 border-primary rounded-lg shadow-md flex flex-col justify-between h-full">
+      <div className="glass-blue p-4 border-2 border-primary rounded-lg shadow-md flex flex-col justify-between h-full">
           <img
             src={`/images/projects/${imageFile}`}
             alt={project.title}

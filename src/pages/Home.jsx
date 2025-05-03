@@ -12,6 +12,9 @@ import SectionGlowBar from "../components/SectionGlowBar";
 import useGitHubProjects from "../data/useGitHubProjects";
 import projectImageMap from "../data/projectImageMap";
 import RepoMarquee from "../components/RepoMarquee";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+import FadeInSection from "../components/FadeInSection";
 
 const topProjects = [
   "stock-and-shop",
@@ -126,12 +129,27 @@ function Home() {
               })}
           </div>
         )}
+        <div className="mt-6 text-center">
+          <Link to="/projects">
+            <button className="uiverse-button">View All Projects</button>
+          </Link>
+        </div>
+        <SectionDivider />
       </section>
+      <FadeInSection className="mt-8 max-w-6xl mx-auto">
       <section className="mt-8 max-w-6xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-6 text-primary-alt">Latest Projects</h2>
+        <h2 className="text-2xl font-semibold mb-6 text-primary-alt">
+          Latest Projects
+        </h2>
         <SectionGlowBar />
         <RepoMarquee repos={repos} />
+        <div className="mt-6 text-center">
+          <Link to="/projects">
+            <button className="uiverse-button">View All Projects</button>
+          </Link>
+        </div>
       </section>
+      </FadeInSection>
       <SectionDivider />
       <section className="mt-8 max-w-4xl mx-auto">
         <h2 className="text-2xl font-semibold mb-4 text-primary-alt">

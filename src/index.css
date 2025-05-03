@@ -150,6 +150,20 @@ code {
   background-color: #ffffff;
 }
 
+@keyframes glide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-glide {
+  animation: glide 3s linear infinite;
+}
+
+
 @keyframes softPulse {
   0%, 100% {
     opacity: 0.5;
@@ -225,3 +239,45 @@ code {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+@keyframes packet-glow {
+  0% {
+    transform: translateX(0%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+.animate-packet-glow {
+  animation: packet-glow 3s infinite linear;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.animate-wave {
+  animation: wave 6s linear infinite;
+}
+
+@keyframes flicker {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.animate-flicker {
+  animation: flicker 2s ease-in-out infinite;
+}
+

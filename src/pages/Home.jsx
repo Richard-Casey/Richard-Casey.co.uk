@@ -34,6 +34,7 @@ function Home() {
       transition={{ duration: 0.6 }}
     >
       <Navbar />
+
       <section className="relative z-10 max-w-7xl mb-px mx-auto px-4">
         <div className="relative rounded-3xl border-2 border-black dark:border-white overflow-hidden shadow-lg">
           <div className="absolute inset-0 bg-primary opacity-50 mix-blend-multiply z-0 pointer-events-none" />
@@ -49,86 +50,97 @@ function Home() {
           </div>
         </div>
       </section>
+
       <SectionDividerHero />
-      <section className="mt-8 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 px-4">
-        <div className="relative w-35 h-35 md:w-48 md:h-48 flex-shrink-0 rounded-full border-[6px] border-primary overflow-hidden">
-          <div className="absolute inset-0 rounded-full border-[2px] border-black dark:border-white z-30" />
-          <div className="absolute inset-0 bg-primary opacity-20 mix-blend-multiply z-20 pointer-events-none rounded-full" />
-          <img
-            src={profileImage}
-            alt="Richard Casey"
-            className="w-full h-full object-cover rounded-full fade-center z-30 relative"
-          />
-          <img
-            src={symbolImage}
-            alt="Symbol"
-            className="absolute inset-0 w-full h-full object-contain opacity-50 z-0"
-          />
-        </div>
-        <div className="flex-1 text-center md:text-left">
-          <h2 className="text-2xl font-semibold mb-4 text-primary-alt">
-            About Me
-          </h2>
-          <SectionGlowBar />
-          <p className="text-gray-800 dark:text-gray-300 leading-relaxed">
-            I’m a Suffolk-based developer with a passion for honest, effective,
-            and efficient software. With a strong background in C#, React, and
-            full-stack development, I enjoy helping people solve real-world
-            problems and turning ideas into working solutions. Whether it’s a
-            game prototype, internal tool, or bespoke feature, I’ll find a way
-            to make it happen.
-          </p>
-        </div>
-      </section>
-      <SectionDivider />
+      <FadeInSection className="mt-0 max-w-6xl mx-auto">
+        <section className="mt-8 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 px-4">
+          <div className="relative w-35 h-35 md:w-48 md:h-48 flex-shrink-0 rounded-full border-[6px] border-primary overflow-hidden">
+            <div className="absolute inset-0 rounded-full border-[2px] border-black dark:border-white z-30" />
+            <div className="absolute inset-0 bg-primary opacity-20 mix-blend-multiply z-20 pointer-events-none rounded-full" />
+            <img
+              src={profileImage}
+              alt="Richard Casey"
+              className="w-full h-full object-cover rounded-full fade-center z-30 relative"
+            />
+            <img
+              src={symbolImage}
+              alt="Symbol"
+              className="absolute inset-0 w-full h-full object-contain opacity-50 z-0"
+            />
+          </div>
+          <div className="flex-1 text-center md:text-left">
+            <h2 className="text-2xl font-semibold mb-4 text-primary-alt">
+              About Me
+            </h2>
+            <SectionGlowBar />
+            <p className="text-gray-800 dark:text-gray-300 leading-relaxed">
+              I’m a Suffolk-based developer with a passion for honest,
+              effective, and efficient software. With a strong background in C#,
+              React, and full-stack development, I enjoy helping people solve
+              real-world problems and turning ideas into working solutions.
+              Whether it’s a game prototype, internal tool, or bespoke feature,
+              I’ll find a way to make it happen.
+            </p>
+          </div>
+        </section>
+
+        <SectionDivider />
+      </FadeInSection>
+
       <section className="mt-8 max-w-6xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-6 text-primary-alt">
-          Top Projects
-        </h2>
-        <SectionGlowBar />
-        {loading ? (
-          <p className="text-center text-gray-500 dark:text-gray-400">
-            Loading top projects...
-          </p>
-        ) : (
-          <div className="grid md:grid-cols-3 gap-6">
-            {repos
-              .filter((project) => topProjects.includes(project.slug))
-              .map((project) => {
-                const imageFile =
-                  projectImageMap[project.title] || `${project.title}.png`;
-                return (
-                  <div
-                    key={project.id}
-                    className="p-1 border-2 border-black dark:border-white rounded-lg"
-                  >
-                    <div className="glass-blue p-4 border-2 border-primary rounded-lg shadow-md flex flex-col justify-between">
-                      <img
-                        src={`/images/projects/${imageFile}`}
-                        alt={project.title}
-                        onError={(e) => {
-                          console.warn("Missing image for:", imageFile);
-                          if (!e.target.dataset.fallback) {
-                            e.target.dataset.fallback = true;
-                            e.target.src = "/images/projects/default.png";
-                          }
-                        }}
-                        className="w-full h-48 object-cover rounded border-2 border-black dark:border-white mb-4"
-                      />
-                      <div className="glass-white mt-auto p-3 h-24 flex flex-col justify-center text-center border-2 border-black dark:border-white rounded overflow-hidden">
-                        <h3 className="font-bold text-lg sm:text-base underline whitespace-nowrap overflow-hidden text-ellipsis -mt-3">
-                          {project.title}
-                        </h3>
-                        <p className="text-xs mt-0.5 overflow-hidden text-ellipsis line-clamp-4 leading-tight">
-                          {project.subtitle}
-                        </p>
+        <FadeInSection className="mt-0 max-w-6xl mx-auto">
+          <h2 className="text-2xl font-semibold mb-6 text-primary-alt">
+            Top Projects
+          </h2>
+        </FadeInSection>
+        <FadeInSection className="mt-0 max-w-6xl mx-auto">
+          <SectionGlowBar />
+        </FadeInSection>
+        <FadeInSection className="mt-0 max-w-6xl mx-auto">
+          {loading ? (
+            <p className="text-center text-gray-500 dark:text-gray-400">
+              Loading top projects...
+            </p>
+          ) : (
+            <div className="grid md:grid-cols-3 gap-6">
+              {repos
+                .filter((project) => topProjects.includes(project.slug))
+                .map((project) => {
+                  const imageFile =
+                    projectImageMap[project.title] || `${project.title}.png`;
+                  return (
+                    <div
+                      key={project.id}
+                      className="p-1 border-2 border-black dark:border-white rounded-lg"
+                    >
+                      <div className="glass-blue p-4 border-2 border-primary rounded-lg shadow-md flex flex-col justify-between">
+                        <img
+                          src={`/images/projects/${imageFile}`}
+                          alt={project.title}
+                          onError={(e) => {
+                            console.warn("Missing image for:", imageFile);
+                            if (!e.target.dataset.fallback) {
+                              e.target.dataset.fallback = true;
+                              e.target.src = "/images/projects/default.png";
+                            }
+                          }}
+                          className="w-full h-48 object-cover rounded border-2 border-black dark:border-white mb-4"
+                        />
+                        <div className="glass-white mt-auto p-3 h-24 flex flex-col justify-center text-center border-2 border-black dark:border-white rounded overflow-hidden">
+                          <h3 className="font-bold text-lg sm:text-base underline whitespace-nowrap overflow-hidden text-ellipsis -mt-3">
+                            {project.title}
+                          </h3>
+                          <p className="text-xs mt-0.5 overflow-hidden text-ellipsis line-clamp-4 leading-tight">
+                            {project.subtitle}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
-          </div>
-        )}
+                  );
+                })}
+            </div>
+          )}
+        </FadeInSection>
         <div className="mt-6 text-center">
           <Link to="/projects">
             <button className="uiverse-button">View All Projects</button>
@@ -137,18 +149,24 @@ function Home() {
         <SectionDivider />
       </section>
       <FadeInSection className="mt-8 max-w-6xl mx-auto">
-      <section className="mt-8 max-w-6xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-6 text-primary-alt">
-          Latest Projects
-        </h2>
-        <SectionGlowBar />
-        <RepoMarquee repos={repos} />
-        <div className="mt-6 text-center">
-          <Link to="/projects">
-            <button className="uiverse-button">View All Projects</button>
-          </Link>
-        </div>
-      </section>
+        <section className="mt-8 max-w-6xl mx-auto">
+          <h2 className="text-2xl font-semibold mb-6 text-primary-alt">
+            Latest Projects
+          </h2>
+          <FadeInSection className="mt-8 max-w-6xl mx-auto">
+            <SectionGlowBar />
+          </FadeInSection>
+          <FadeInSection className="mt-8 max-w-6xl mx-auto">
+            <RepoMarquee repos={repos} />
+          </FadeInSection>
+          <FadeInSection className="mt-8 max-w-6xl mx-auto">
+            <div className="mt-6 text-center">
+              <Link to="/projects">
+                <button className="uiverse-button">View All Projects</button>
+              </Link>
+            </div>
+          </FadeInSection>
+        </section>
       </FadeInSection>
       <SectionDivider />
       <section className="mt-8 max-w-4xl mx-auto">

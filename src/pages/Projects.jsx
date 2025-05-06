@@ -81,7 +81,7 @@ export default function Projects() {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.6 }}
       >
-<SectionUnderline>Projects</SectionUnderline>
+<SectionUnderline center>Projects</SectionUnderline>
 
         {/* Tag Filters */}
         <div className="flex flex-wrap justify-center gap-3 mb-10">

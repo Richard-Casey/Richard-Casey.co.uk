@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/static/css/main.25b3e63f.css",
+    "main.js": "/static/js/main.4fc21144.js",
+    "static/js/453.8c2bafb4.chunk.js": "/static/js/453.8c2bafb4.chunk.js",
+    "static/media/landing.png": "/static/media/landing.75ac162f23658cff01ae.png",
+    "static/media/Stock and Shop.png": "/static/media/Stock and Shop.e90fbbea99ea9c2b6c18.png",
+    "static/media/mecropped2.png": "/static/media/mecropped2.737de79e349d9856f0f6.png",
+    "static/media/Poker Matic 5000.png": "/static/media/Poker Matic 5000.2f4389fcb60771d5ad35.png",
+    "static/media/University Year 1.png": "/static/media/University Year 1.43497e50c8ff29211a07.png",
+    "static/media/University Year 2.png": "/static/media/University Year 2.44dad7ddf84e7b0aeb87.png",
+    "static/media/University Year 3.png": "/static/media/University Year 3.79ec6510c480632e9424.png",
+    "static/media/Testing Code.png": "/static/media/Testing Code.bce0978d906323bfc3ec.png",
+    "static/media/Chuck Norris Fact Demo.png": "/static/media/Chuck Norris Fact Demo.f0d1b2ae5e55161cadd1.png",
+    "static/media/Encompass Work Tracker.png": "/static/media/Encompass Work Tracker.e160abe9e17c6ac34ff5.png",
+    "static/media/Coding Practice.png": "/static/media/Coding Practice.146f7fb238b30f46c88f.png",
+    "static/media/First Person Grap.png": "/static/media/First Person Grap.adad8bdb96fe6d4a6b2a.png",
+    "static/media/Beginning C Plus Plus Through Game Programming.png": "/static/media/Beginning C Plus Plus Through Game Programming.1bd073d896a56009c899.png",
+    "static/media/Codewars Practice C Sharp.png": "/static/media/Codewars Practice C Sharp.f7463a43b7cdbb14a795.png",
+    "static/media/C Plus Plus Exercises.png": "/static/media/C Plus Plus Exercises.8326fe421956df18ca62.png",
+    "static/media/Richard Casey.png": "/static/media/Richard Casey.57d75f6c081c06b7576d.png",
+    "static/media/Pet System.png": "/static/media/Pet System.35e3f411cc763a6185ec.png",
+    "static/media/The Other Half Hub Website.png": "/static/media/The Other Half Hub Website.ea8444beb2586c6a1403.png",
+    "static/media/Objects And Types Miles To Km.png": "/static/media/Objects And Types Miles To Km.c8dbe65c4e5f4e58e842.png",
+    "static/media/Logo1.png": "/static/media/Logo1.3b0a548952b329cd91cc.png",
+    "static/media/default.png": "/static/media/default.3b0a548952b329cd91cc.png",
+    "index.html": "/index.html",
+    "main.25b3e63f.css.map": "/static/css/main.25b3e63f.css.map",
+    "main.4fc21144.js.map": "/static/js/main.4fc21144.js.map",
+    "453.8c2bafb4.chunk.js.map": "/static/js/453.8c2bafb4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.25b3e63f.css",
+    "static/js/main.4fc21144.js"
+  ]
+}

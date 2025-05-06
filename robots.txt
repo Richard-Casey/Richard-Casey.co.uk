@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://richard-casey.co.uk/sitemap.xml

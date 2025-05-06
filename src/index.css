@@ -15,6 +15,13 @@ code {
   font-family: 'Space Mono', monospace;
 }
 
+/* default = light‑mode */
+:root { --su-neutral: #000; }
+
+/* dark‑mode — <html class="dark"> or any element with .dark */
+.dark { --su-neutral: #fff; }
+
+
 /* Custom button style */
 .enter-button {
   width: 10em;

@@ -1,0 +1,80 @@
+.effect {
+    padding: 10px;
+    font-weight: 700;
+    color: transparent !important;       /* must beat Tailwind text‑* */
+    background:
+    linear-gradient(180deg,#00A8C6 50%,var(--su-neutral) 0) bottom left,
+    linear-gradient(  0deg,#00A8C6 50%,var(--su-neutral) 0) top    right;
+    background-size: 51% 200%;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+  
+
+    display: inline-block;
+    position: relative;
+
+    --u-delay: 0s;
+    transition: var(--u-delay) .2s linear;
+  }
+  
+  /* underline bars — share same variable delay -------------------- */
+  .effect::before,
+  .effect::after {
+    content: "";
+    position: absolute;
+    inset: 0 100% 0 0;                         
+    clip-path: inset(0 0 calc(100% - 4px));
+    background: linear-gradient(#00A8C6 0 0) left/50% 100% no-repeat;
+    background-size: 50% 100%;
+    transition: var(--u-delay) .6s,
+                transform        .6s .6s,
+                background-size  .6s;
+    transition-timing-function: linear;
+  }
+  .effect::after {
+    clip-path: inset(calc(100% - 4px) 0 0);
+    background-position: right;
+    inset: 0 0 0 100%;
+  }
+  
+
+  .fire {
+    background-position: top left, bottom right;
+  }
+  .fire::before,
+  .fire::after {
+    background-size: 100% 100%;
+    inset: 0;
+    transition: var(--u-delay) 0s,          
+                transform        .3s .3s,
+                background-size  .3s .6s;
+  }
+  .fire::before  { transform: translateY(calc(100% - 4px)); }
+  .fire::after   { transform: translateY(calc(4px - 100%)); }
+
+/* final colour‑fade — happens after the animation is totally still */
+.fade::before,
+.fade::after {
+  background: linear-gradient(var(--su-neutral) 0 0) left/100% 100% no-repeat;
+  transition: background 2s linear;   /* 2‑second fade */
+}
+
+.overlayBars {
+    pointer-events: none;                   /* ignore mouse             */
+    position: absolute;
+    inset: 0;
+    z-index: 2;                                /* full size of heading     */
+  
+    /* draw the two 4‑px bars (neutral colour)                      */
+    --c: var(--su-neutral);
+    background:
+      linear-gradient(var(--c) 0 0) top    left  /100% 4px no-repeat,
+      linear-gradient(var(--c) 0 0) bottom right /100% 4px no-repeat;
+  
+    opacity: 0;                             /* invisible at start       */
+    transition: opacity 0.3s linear;          /* 2‑second gentle fade     */
+  }
+  
+  /* becomes visible when the .overlayVisible class is added */
+  .overlayVisible { opacity: 1; }

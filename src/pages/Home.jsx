@@ -15,6 +15,7 @@ import RepoMarquee from "../components/RepoMarquee";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import FadeInSection from "../components/FadeInSection";
+import SectionUnderline from "../components/SectionUnderline";
 
 const topProjects = [
   "stock-and-shop",
@@ -57,31 +58,33 @@ function Home() {
           <div className="relative w-35 h-35 md:w-48 md:h-48 flex-shrink-0 rounded-full border-[6px] border-primary overflow-hidden">
             <div className="absolute inset-0 rounded-full border-[2px] border-black dark:border-white z-30" />
             <div className="absolute inset-0 bg-primary opacity-20 mix-blend-multiply z-20 pointer-events-none rounded-full" />
-            <img
-              src={profileImage}
-              alt="Richard Casey"
-              className="w-full h-full object-cover rounded-full fade-center z-30 relative"
-            />
-            <img
-              src={symbolImage}
-              alt="Symbol"
-              className="absolute inset-0 w-full h-full object-contain opacity-50 z-0"
-            />
+            <FadeInSection>
+              <img
+                src={profileImage}
+                alt="Richard Casey"
+                className="w-full h-full object-cover rounded-full fade-center z-30 relative"
+              />
+              <img
+                src={symbolImage}
+                alt="Symbol"
+                className="absolute inset-0 w-full h-full object-contain opacity-50 z-0"
+              />
+            </FadeInSection>
           </div>
-          <div className="flex-1 text-center md:text-left">
-            <h2 className="text-2xl font-semibold mb-4 text-primary-alt">
-              About Me
-            </h2>
-            <SectionGlowBar />
-            <p className="text-gray-800 dark:text-gray-300 leading-relaxed">
-              I’m a Suffolk-based developer with a passion for honest,
-              effective, and efficient software. With a strong background in C#,
-              React, and full-stack development, I enjoy helping people solve
-              real-world problems and turning ideas into working solutions.
-              Whether it’s a game prototype, internal tool, or bespoke feature,
-              I’ll find a way to make it happen.
-            </p>
-          </div>
+          <FadeInSection className="mt-0 max-w-6xl mx-auto">
+            <div className="flex-1 text-center md:text-left">
+              <SectionUnderline>About&nbsp;Me</SectionUnderline>
+
+              <p className="text-gray-800 dark:text-gray-300 leading-relaxed">
+                I’m a Suffolk-based developer with a passion for honest,
+                effective, and efficient software. With a strong background in
+                C#, React, and full-stack development, I enjoy helping people
+                solve real-world problems and turning ideas into working
+                solutions. Whether it’s a game prototype, internal tool, or
+                bespoke feature, I’ll find a way to make it happen.
+              </p>
+            </div>
+          </FadeInSection>
         </section>
 
         <SectionDivider />
@@ -89,13 +92,9 @@ function Home() {
 
       <section className="mt-8 max-w-6xl mx-auto">
         <FadeInSection className="mt-0 max-w-6xl mx-auto">
-          <h2 className="text-2xl font-semibold mb-6 text-primary-alt">
-            Top Projects
-          </h2>
+          <SectionUnderline>Top&nbsp;Projects</SectionUnderline>
         </FadeInSection>
-        <FadeInSection className="mt-0 max-w-6xl mx-auto">
-          <SectionGlowBar />
-        </FadeInSection>
+        <FadeInSection className="mt-0 max-w-6xl mx-auto"></FadeInSection>
         <FadeInSection className="mt-0 max-w-6xl mx-auto">
           {loading ? (
             <p className="text-center text-gray-500 dark:text-gray-400">
@@ -150,12 +149,8 @@ function Home() {
       </section>
       <FadeInSection className="mt-8 max-w-6xl mx-auto">
         <section className="mt-8 max-w-6xl mx-auto">
-          <h2 className="text-2xl font-semibold mb-6 text-primary-alt">
-            Latest Projects
-          </h2>
-          <FadeInSection className="mt-8 max-w-6xl mx-auto">
-            <SectionGlowBar />
-          </FadeInSection>
+          <SectionUnderline>Latest&nbsp;Projects</SectionUnderline>
+          <FadeInSection className="mt-8 max-w-6xl mx-auto"></FadeInSection>
           <FadeInSection className="mt-8 max-w-6xl mx-auto">
             <RepoMarquee repos={repos} />
           </FadeInSection>
@@ -169,17 +164,28 @@ function Home() {
         </section>
       </FadeInSection>
       <SectionDivider />
+
       <section className="mt-8 max-w-4xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-4 text-primary-alt">
-          Services Offered
-        </h2>
-        <SectionGlowBar />
+        <FadeInSection>
+          <SectionUnderline>Services&nbsp;Offered</SectionUnderline>
+        </FadeInSection>
+
         <ul className="list-disc pl-5 text-gray-800 dark:text-gray-300 space-y-2">
-          <li>Custom Software Development</li>
-          <li>Web Applications (React, Tailwind, MongoDB)</li>
-          <li>Game Prototypes & Indie Game Projects</li>
-          <li>Workflow Tools (C# · WPF · Internal Solutions)</li>
-          <li>Consultation for Technical Projects</li>
+          <FadeInSection>
+            <li>Custom Software Development</li>{" "}
+          </FadeInSection>
+          <FadeInSection>
+            <li>Web Applications (React, Tailwind, MongoDB)</li>
+          </FadeInSection>
+          <FadeInSection>
+            <li>Game Prototypes & Indie Game Projects</li>
+          </FadeInSection>
+          <FadeInSection>
+            <li>Workflow Tools (C# · WPF · Internal Solutions)</li>
+          </FadeInSection>
+          <FadeInSection>
+            <li>Consultation for Technical Projects</li>
+          </FadeInSection>
         </ul>
       </section>
       <SectionDivider />

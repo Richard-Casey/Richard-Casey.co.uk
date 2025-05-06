@@ -6,7 +6,8 @@ export default function SectionUnderline({
   children,
   delay = 0.3,
   fadeAfter = 1200,   // ms after the swap to start fading
-  className = ""
+  className = "",
+  center = false
 }) {
   const ref      = useRef(null);
   const inView   = useInView(ref, { once: true, margin: "-100px" });
@@ -22,26 +23,27 @@ export default function SectionUnderline({
   }, [inView, fadeAfter]);
 
   return (
-    <h2
-      ref={ref}
-      className={`
-        inline-block            
-        ${styles.effect}                   
-        ${phase !== "idle" ? styles.fire : ""}
-        text-2xl mb-4 md:text-3xl font-bold
-        ${className}
-      `}
-      style={{ "--u-delay": `${delay}s` }}
-    >
-      {children}
-
-      {/* overlay bars that will fade in */}
-      <span
+    <div className={`w-full ${center ? "text-center" : ""}`}>
+      <h2
+        ref={ref}
         className={`
-          ${styles.overlayBars}
-          ${phase === "fade" ? styles.overlayVisible : ""}
+          inline-block
+          ${styles.effect}
+          ${phase !== "idle" ? styles.fire : ""}
+          text-2xl md:text-3xl font-bold mb-4
+          ${className}
         `}
-      />
-    </h2>
+        style={{ "--u-delay": `${delay}s` }}
+      >
+        {children}
+        <span
+          className={`
+            ${styles.overlayBars}
+            ${phase === "fade" ? styles.overlayVisible : ""}
+          `}
+        />
+      </h2>
+    </div>
   );
+  
 }

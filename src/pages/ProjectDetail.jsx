@@ -1,15 +1,27 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import projects from "../data/projects";
+import useGitHubProjects from "../data/useGitHubProjects";
 import Navbar from "../components/Navbar";
+import SectionUnderline from "../components/SectionUnderline";
 
-function ProjectDetail() {
+export default function ProjectDetail() {
   const { slug } = useParams();
-  const project = projects.find((p) => p.slug === slug);
+  const { repos, loading } = useGitHubProjects(100); // load all for lookup
+
+  const project = repos.find((p) => p.slug === slug);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-light-bg dark:bg-dark-bg text-white p-10">
+        <Navbar />
+        <p className="text-center text-gray-400">Loading project…</p>
+      </div>
+    );
+  }
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-white dark:bg-black text-white p-10">
+      <div className="min-h-screen bg-light-bg dark:bg-dark-bg text-white p-10">
         <Navbar />
         <h1 className="text-center text-3xl text-red-500">Project Not Found</h1>
       </div>
@@ -17,38 +29,39 @@ function ProjectDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-white pb-20">
+    <div className="min-h-screen bg-light-bg dark:bg-dark-bg text-white pb-20">
       <Navbar />
 
       <div className="max-w-5xl mx-auto px-6 py-12">
-        <h1 className="text-4xl font-bold text-primary-alt mb-2">
-          {project.title}
-        </h1>
-        <p className="text-gray-400 text-sm mb-4">{project.subtitle}</p>
+        <SectionUnderline center>{project.title}</SectionUnderline>
+
+        <p className="text-gray-400 text-sm mb-6 text-center">{project.subtitle}</p>
 
         {project.image && (
           <img
             src={project.image}
             alt={project.title}
-            className="w-full max-h-[400px] object-cover rounded mb-6"
+            className="w-full max-h-[400px] object-cover rounded-lg border border-white/20 mb-8"
           />
         )}
 
-        <p className="text-gray-300 leading-relaxed mb-6">
-          {project.description}
-        </p>
+        {project.description && (
+          <p className="text-gray-300 leading-relaxed mb-6">{project.description}</p>
+        )}
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {project.tags.map((tag, index) => (
-            <span
-              key={index}
-              className="bg-primary-alt text-black dark:text-white px-3 py-1 text-xs rounded"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+        {project.tags && project.tags.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-6">
+            {project.tags.map((tag, index) => (
+              <span
+                key={index}
+                className="bg-primary-alt text-black dark:text-white px-3 py-1 text-xs rounded"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
 
         {/* Optional Gallery */}
         {project.gallery && project.gallery.length > 0 && (
@@ -58,28 +71,28 @@ function ProjectDetail() {
                 key={idx}
                 src={img}
                 alt={`Screenshot ${idx + 1}`}
-                className="w-full rounded object-cover"
+                className="w-full rounded-lg object-cover border border-white/10"
               />
             ))}
           </div>
         )}
 
         {/* Links */}
-        <div className="flex gap-4">
+        <div className="flex gap-6 text-sm mb-6">
           {project.github && (
             <a
               href={project.github}
-              className="text-primary-alt underline"
+              className="text-primary-alt underline hover:opacity-80 transition"
               target="_blank"
               rel="noopener noreferrer"
             >
-              GitHub
+              GitHub Repository
             </a>
           )}
           {project.liveDemo && (
             <a
               href={project.liveDemo}
-              className="text-primary-alt underline"
+              className="text-primary-alt underline hover:opacity-80 transition"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -88,10 +101,11 @@ function ProjectDetail() {
           )}
         </div>
 
-        <div className="mt-10">
+        {/* Back Link */}
+        <div className="mt-10 text-center">
           <Link
             to="/projects"
-            className="text-sm text-white underline hover:text-primary-alt"
+            className="text-sm text-white underline hover:text-primary-alt transition"
           >
             ← Back to Projects
           </Link>
@@ -100,5 +114,3 @@ function ProjectDetail() {
     </div>
   );
 }
-
-export default ProjectDetail;

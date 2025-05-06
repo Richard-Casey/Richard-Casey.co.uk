@@ -6,6 +6,7 @@ import projectImageMap from "../data/projectImageMap";
 import Navbar from "../components/Navbar";
 import SectionDivider from "../components/SectionDivider";
 import SectionUnderline from "../components/SectionUnderline";
+import FadeInSection from "../components/FadeInSection";
 
 export default function Projects() {
   const { repos, loading } = useGitHubProjects(100);
@@ -25,8 +26,7 @@ export default function Projects() {
       : list.filter((p) => (p.tags || []).includes(activeTag));
 
   const Tile = ({ project }) => {
-    const imageFile =
-      projectImageMap[project.title] || `${project.title}.png`;
+    const imageFile = projectImageMap[project.title] || `${project.title}.png`;
 
     return (
       <Link
@@ -81,41 +81,46 @@ export default function Projects() {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.6 }}
       >
-<SectionUnderline center>Projects</SectionUnderline>
+        <FadeInSection>
+          <SectionUnderline center>Projects</SectionUnderline>
+        </FadeInSection>
 
         {/* Tag Filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {allTags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => setActiveTag(tag)}
-              className={`px-4 py-1 rounded-full text-sm border transition
+        <FadeInSection>
+          <div className="flex flex-wrap justify-center gap-3 mb-10">
+            {allTags.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => setActiveTag(tag)}
+                className={`px-4 py-1 rounded-full text-sm border transition
                 ${
                   activeTag === tag
                     ? "bg-primary-alt text-black dark:text-white font-bold"
                     : "border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-800 hover:text-white"
                 }`}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
-
-        <SectionDivider />
-
-        {loading && (
-          <p className="text-center text-gray-500 dark:text-gray-400 my-10">
-            Fetching repositories…
-          </p>
-        )}
-
-        {!loading && (
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {filteredProjects.map((project) => (
-              <Tile key={project.id} project={project} />
+              >
+                {tag}
+              </button>
             ))}
           </div>
-        )}
+        </FadeInSection>
+        <SectionDivider />
+        <FadeInSection>
+          {loading && (
+            <p className="text-center text-gray-500 dark:text-gray-400 my-10">
+              Fetching repositories…
+            </p>
+          )}
+        </FadeInSection>
+        <FadeInSection>
+          {!loading && (
+            <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {filteredProjects.map((project) => (
+                <Tile key={project.id} project={project} />
+              ))}
+            </div>
+          )}
+        </FadeInSection>
       </motion.div>
     </>
   );

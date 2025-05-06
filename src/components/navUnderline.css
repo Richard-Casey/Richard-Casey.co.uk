@@ -1,0 +1,40 @@
+/* navUnderline.css  ------------------------------------------------ */
+
+/* root‑level variable already exists from earlier work:
+   :root        { --su-neutral: #000; }
+   .dark        { --su-neutral: #fff; }                              */
+
+   .nav-underline {
+    position: relative;
+    padding-bottom: 5px;                 /* space for the bars          */
+    transition: color .2s;
+  }
+  
+  /* two bars */
+  .nav-underline::before,
+  .nav-underline::after {
+    content: "";
+    position: absolute;
+    left: 50%;                           /* start at centre             */
+    transform: translateX(-50%);
+    width: 0;                            /* will grow on hover          */
+    height: 2px;
+    transition: width .5s;               /* total duration              */
+  }
+  
+  /* top bar – neutral colour */
+  .nav-underline::before {
+    bottom: 0;
+    background: var(--su-neutral);
+  }
+  
+  /* bottom bar – primary blue, lower by 6 px */
+  .nav-underline::after  {
+    bottom: -6px;
+    background: #009de5;
+  }
+  
+  /* hover / active state */
+  .nav-underline:hover::before  { width: 100%; }
+  .nav-underline:hover::after   { width: 60%; }
+  

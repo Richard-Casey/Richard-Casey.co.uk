@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/Logo1.png";
 import ThemeToggle from "./ThemeToggle";
 import SectionDividerThin from "./SectionDividerThin";
+import "./navUnderline.css";
 
 function Navbar() {
   return (
@@ -18,39 +19,39 @@ function Navbar() {
           </div>
 
           <nav className="flex items-center space-x-6">
-            <Link
-              to="/home"
-              className="text-black dark:text-white text-sm hover:text-primary-alt transition-colors duration-300"
-            >
-              Home
-            </Link>
+          <Link
+  to="/home"
+  className="nav-underline text-sm text-black dark:text-white"
+>
+  Home
+</Link>
             <Link
               to="/projects"
-              className="text-black dark:text-white text-sm hover:text-primary-alt transition-colors duration-300"
+              className="nav-underline text-sm text-black dark:text-white"
             >
               Projects
             </Link>
             <Link
               to="/services"
-              className="text-black dark:text-white text-sm hover:text-primary-alt transition-colors duration-300"
+              className="nav-underline text-sm text-black dark:text-white"
             >
               Services
             </Link>
             <Link
               to="/consultation"
-              className="text-black dark:text-white text-sm hover:text-primary-alt transition-colors duration-300"
+              className="nav-underline text-sm text-black dark:text-white"
             >
               Consultation
             </Link>
             <Link
               to="/contact"
-              className="text-black dark:text-white text-sm hover:text-primary-alt transition-colors duration-300"
+              className="nav-underline text-sm text-black dark:text-white"
             >
               Contact
             </Link>
             <Link
               to="/about"
-              className="text-black dark:text-white text-sm hover:text-primary-alt transition-colors duration-300"
+              className="nav-underline text-sm text-black dark:text-white"
             >
               About
             </Link>

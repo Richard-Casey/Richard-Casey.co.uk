@@ -9,7 +9,7 @@ import Typewriter from "../components/Typewriter";
 import profileImage from "../assets/mecropped2.png";
 import symbolImage from "../assets/Symbol1.png";
 import SectionGlowBar from "../components/SectionGlowBar";
-import useGitHubProjects from "../data/useGitHubProjects";
+import { useGitHubProjectsContext } from "../context/GitHubProjectsContext";
 import projectImageMap from "../data/projectImageMap";
 import RepoMarquee from "../components/RepoMarquee";
 import { useInView } from "framer-motion";
@@ -24,7 +24,7 @@ const topProjects = [
 ];
 
 function Home() {
-  const { repos, loading } = useGitHubProjects(100);
+  const { repos, loading } = useGitHubProjectsContext();
 
   return (
     <motion.div
@@ -106,7 +106,8 @@ function Home() {
                 .filter((project) => topProjects.includes(project.slug))
                 .map((project) => {
                   const imageFile =
-                    projectImageMap[project.title] || `${project.title}.png`;
+                    projectImageMap[project.slug] || `${project.slug}.png`;
+
                   return (
                     <div
                       key={project.id}

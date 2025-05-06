@@ -1,10 +1,9 @@
 const projectImageMap = {
-    "University-Year-3": "stock-and-shop.png",
-    "P1Website": "other-half-hub-website.png",
-    "EncompassWorkTracker": "encompass-work-tracker.png",
-    "ChuckNorrisFactDemo": "ChuckNorrisFactDemo.png",
-    "PetSystem": "PetSystem.png"
-  };
-  
-  export default projectImageMap;
-  
+  "stock-and-shop": "stock and shop.png",
+  "the-other-half-hub-website": "the other half hub website.png",
+  "encompass-work-tracker": "encompass work tracker.png",
+  "chuck-norris-fact-demo": "ChuckNorrisFactDemo.png",
+  "pet-system": "PetSystem.png"
+};
+
+export default projectImageMap;

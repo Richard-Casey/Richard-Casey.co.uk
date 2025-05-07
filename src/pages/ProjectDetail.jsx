@@ -44,23 +44,17 @@ export default function ProjectDetail() {
 
         {/* Subtitle in glass-white */}
         <div className="flex justify-center mb-6">
-  <div className="glass-subtitle max-w-3xl text-center text-sm">
-    {project.subtitle}
-  </div>
-</div>
-
+          <div className="glass-subtitle max-w-3xl text-center text-sm">
+            {project.subtitle}
+          </div>
+        </div>
 
         {/* Image: inner border (black or white), outer border (primary) */}
         {project.image && (
-  <div className="mb-8 p-1 rounded-lg border-[3px] border-primary">
-    <FramedImage
-      src={project.image}
-      alt={project.title}
-      className=""
-    />
-  </div>
-)}
-
+          <div className="mb-8 p-1 rounded-lg border-[3px] border-primary">
+            <FramedImage src={project.image} alt={project.title} className="" />
+          </div>
+        )}
 
         {/* Tags */}
         {project.tags && project.tags.length > 0 && (
@@ -68,7 +62,7 @@ export default function ProjectDetail() {
             {project.tags.map((tag, index) => (
               <span
                 key={index}
-                className="bg-primary-alt text-gray-800 font-semibold px-3 py-1 text-xs rounded"
+                className="bg-primary-alt text-gray-800 font-bold px-4 py-2 text-sm sm:text-base rounded shadow-md"
               >
                 {tag}
               </span>

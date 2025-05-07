@@ -16,6 +16,8 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import FadeInSection from "../components/FadeInSection";
 import SectionUnderline from "../components/SectionUnderline";
+import GlassmorphismContainer from "../components/GlassmorphismContainer";
+import FramedImage from "../components/FramedImage";
 
 const topProjects = [
   "stock-and-shop",
@@ -116,11 +118,11 @@ function Home() {
 
         <FadeInSection>
           {loading ? (
-            <p className="text-center text-gray-500 dark:text-gray-400">
+            <p className="text-center text-gray-500 dark:text-gray-400 ">
               Loading top projects...
             </p>
           ) : (
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-6 ">
               {repos
                 .filter((project) => topProjects.includes(project.slug))
                 .map((project) => {
@@ -130,29 +132,27 @@ function Home() {
                   return (
                     <div
                       key={project.id}
-                      className="p-1 border-2 border-black dark:border-white rounded-lg"
+                      className="p-1 border-2 border-black dark:border-white rounded-lg transform transition-transform duration-300 hover:scale-105"
                     >
                       <div className="glass-blue p-4 border-2 border-primary rounded-lg shadow-md flex flex-col justify-between">
-                        <img
+                        <FramedImage
                           src={`/images/projects/${imageFile}`}
                           alt={project.title}
-                          onError={(e) => {
-                            console.warn("Missing image for:", imageFile);
-                            if (!e.target.dataset.fallback) {
-                              e.target.dataset.fallback = true;
-                              e.target.src = "/images/projects/default.png";
-                            }
-                          }}
-                          className="w-full h-48 object-cover rounded border-2 border-black dark:border-white mb-4"
+                          className="h-48 mb-4"
                         />
-                        <div className="glass-white mt-auto p-3 h-24 flex flex-col justify-center text-center border-2 border-black dark:border-white rounded overflow-hidden">
+
+                        <GlassmorphismContainer
+                          variant="white"
+                          padding="p-3"
+                          className="h-24 flex flex-col justify-center text-center rounded overflow-hidden"
+                        >
                           <h3 className="font-bold text-lg sm:text-base underline whitespace-nowrap overflow-hidden text-ellipsis -mt-3">
                             {project.title}
                           </h3>
                           <p className="text-xs mt-0.5 overflow-hidden text-ellipsis line-clamp-4 leading-tight">
                             {project.subtitle}
                           </p>
-                        </div>
+                        </GlassmorphismContainer>
                       </div>
                     </div>
                   );

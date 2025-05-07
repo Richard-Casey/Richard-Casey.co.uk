@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@layer utilities {
+  .border-3 {
+    border-width: 3px;
+  }
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 body {
   @apply bg-light-bg dark:bg-dark-bg text-black dark:text-white font-mono;
@@ -12,15 +18,18 @@ body {
 }
 
 code {
-  font-family: 'Space Mono', monospace;
+  font-family: "Space Mono", monospace;
 }
 
 /* default = light‑mode */
-:root { --su-neutral: #000; }
+:root {
+  --su-neutral: #000;
+}
 
 /* dark‑mode — <html class="dark"> or any element with .dark */
-.dark { --su-neutral: #fff; }
-
+.dark {
+  --su-neutral: #fff;
+}
 
 /* Custom button style */
 .enter-button {
@@ -84,46 +93,86 @@ code {
 
 /* Blue/grey glassmorphism based on theme */
 .glass-blue {
-  @apply border-2 rounded-lg backdrop-blur-md shadow-md transition-colors duration-300;
-}
-
-.glass-blue {
-  @apply border-2 rounded-lg backdrop-blur-md shadow-md transition-colors duration-300;
-  background: rgba(0, 0, 0, 0.329); /* slightly deeper grey for light mode */
+  position: relative;
+  border-width: 3px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: transparent; /* fallback */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
-  /* ❌ remove border-color override here */
+  transition: all 0.3s ease;
 }
 
-.dark .glass-blue {
-  background: rgba(0, 157, 229, 0.2);
-  box-shadow: 0 4px 30px rgba(0, 157, 229, 0.25);
-  border-color: #009de5; /* primary blue in dark mode */
+.glass-marquee {
+  background-color: rgba(0, 157, 229, 0.12);
+  border-width: 3px;
+  border-radius: 0.5rem;
+  box-shadow: none; /* Kill the shadow */
+  backdrop-filter: none; /* Kill the blur */
+  -webkit-backdrop-filter: none;
+  transition: all 0.3s ease;
 }
 
+
+/* Add a ::before pseudo-element as the solid base */
+.glass-blue::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 157, 229, 0.65); /* soft blue tint */
+  z-index: -1;
+}
 
 .glass-white {
-  background: rgba(255, 255, 255, 0.822);
+  background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: 0.5rem;
   padding: 0.25rem 0.5rem;
-  color: black; /* 👈 Add this */
+  color: black;
+  border: 3px solid black; /* ⬅️ black in light mode */
 }
+
+.dark .glass-white {
+  border: 3px solid black; /* ⬅️ white in dark mode */
+  color: black; /* optional: ensure text is still readable */
+}
+
+.glass-subtitle {
+  background: rgb(255, 255, 255); /* translucent base */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border: 2px solid #009de5; /* always primary blue */
+  color: #333;
+  font-size: medium;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.dark .glass-subtitle {
+  background: rgb(255, 255, 255);
+  color: #333;
+  font-size: medium;
+  font-weight: 600;
+}
+
 
 .text-outline {
   color: white;
-  text-shadow:
-    -1px -1px 0 #000,
-     1px -1px 0 #000,
-    -1px  1px 0 #000,
-     1px  1px 0 #000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 @keyframes blink {
-  0%, 49% {
+  0%,
+  49% {
     opacity: 1;
   }
-  50%, 100% {
+  50%,
+  100% {
     opacity: 0;
   }
 }
@@ -132,12 +181,21 @@ code {
   animation: blink 2s step-start infinite;
 }
 .fade-center {
-  mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
-  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
+  mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
 @keyframes glowPulse {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.6);
   }
   50% {
@@ -170,9 +228,9 @@ code {
   animation: glide 3s linear infinite;
 }
 
-
 @keyframes softPulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.5;
     box-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
   }
@@ -231,7 +289,8 @@ code {
 }
 
 @keyframes fadePulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.5;
   }
   50% {
@@ -277,7 +336,8 @@ code {
 }
 
 @keyframes flicker {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.4;
   }
   50% {
@@ -287,4 +347,3 @@ code {
 .animate-flicker {
   animation: flicker 2s ease-in-out infinite;
 }
-

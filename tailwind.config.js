@@ -4,6 +4,8 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      borderWidth: {
+        3: "3px", },
       colors: {
         primary: "#009de5",
         "primary-alt": "#00bdf7",
@@ -24,5 +26,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };

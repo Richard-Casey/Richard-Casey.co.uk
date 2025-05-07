@@ -7,6 +7,8 @@ import { useGitHubProjectsContext } from "../context/GitHubProjectsContext";
 import projectImageMap from "../data/projectImageMap";
 import SectionUnderline from "../components/SectionUnderline";
 import TagScroller from "../components/TagScroller";
+import GlassmorphismContainer from "../components/GlassmorphismContainer";
+import FramedImage from "../components/FramedImage";
 
 function Projects() {
   const { repos: projects, loading } = useGitHubProjectsContext();
@@ -35,6 +37,8 @@ function Projects() {
           </SectionUnderline>
         </div>
 
+        <SectionDivider />
+
         {/* Tag Filters */}
         <TagScroller
           tags={allTags}
@@ -51,56 +55,32 @@ function Projects() {
               projectImageMap[project.slug] || `${project.slug}.png`;
 
             return (
-              <div
+              <Link
                 key={project.id}
-                className="w-full sm:w-[23rem] p-1 border-2 border-black dark:border-white rounded-lg"
+                to={`/projects/${project.slug}`}
+                className="w-full sm:w-[23rem] p-1 border-2 border-black dark:border-white rounded-lg transform transition-transform duration-300 hover:scale-105"
               >
-                <div className="glass-blue p-4 border-2 border-primary rounded-lg shadow-md flex flex-col justify-between">
-                  <img
+                <div className="glass-blue p-4 border-2 border-primary rounded-lg shadow-md flex flex-col justify-between h-full">
+                  <FramedImage
                     src={`/images/projects/${imageFile}`}
                     alt={project.title}
-                    onError={(e) => {
-                      if (!e.target.dataset.fallback) {
-                        e.target.dataset.fallback = true;
-                        e.target.src = "/images/projects/default.png";
-                      }
-                    }}
-                    className="w-full h-48 object-cover rounded border-2 border-black dark:border-white mb-4"
+                    className="h-48 mb-4"
                   />
 
-                  <div className="glass-white mt-auto p-3 h-36 flex flex-col justify-center text-center border-2 border-black dark:border-white rounded overflow-hidden">
+                  <GlassmorphismContainer
+                    variant="white"
+                    padding="p-3"
+                    className="h-36 flex flex-col justify-center text-center rounded overflow-hidden"
+                  >
                     <h3 className="font-bold text-lg underline whitespace-nowrap overflow-hidden text-ellipsis -mt-3">
                       {project.title}
                     </h3>
                     <p className="text-sm mt-0.5 overflow-hidden text-ellipsis line-clamp-6 leading-tight">
                       {project.subtitle}
                     </p>
-                  </div>
-
-                  <div className="flex justify-end gap-3 mt-4">
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        className="text-sm text-primary-alt hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        GitHub
-                      </a>
-                    )}
-                    {project.liveDemo && (
-                      <a
-                        href={project.liveDemo}
-                        className="text-sm text-primary-alt hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Live Demo
-                      </a>
-                    )}
-                  </div>
+                  </GlassmorphismContainer>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

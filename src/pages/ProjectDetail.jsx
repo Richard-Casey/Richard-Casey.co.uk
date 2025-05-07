@@ -3,12 +3,19 @@ import { useParams, Link } from "react-router-dom";
 import useGitHubProjects from "../data/useGitHubProjects";
 import Navbar from "../components/Navbar";
 import SectionUnderline from "../components/SectionUnderline";
+import projectMeta from "../data/projectMeta";
+import ReactMarkdown from "react-markdown";
+import readmeMap from "../data/readmeMap";
+import GlassmorphismContainer from "../components/GlassmorphismContainer";
+import FramedImage from "../components/FramedImage";
 
 export default function ProjectDetail() {
   const { slug } = useParams();
-  const { repos, loading } = useGitHubProjects(100); // load all for lookup
+  const { repos, loading } = useGitHubProjects(100);
 
   const project = repos.find((p) => p.slug === slug);
+  const meta = projectMeta[slug];
+  const readmeFile = readmeMap[slug];
 
   if (loading) {
     return (
@@ -35,27 +42,33 @@ export default function ProjectDetail() {
       <div className="max-w-5xl mx-auto px-6 py-12">
         <SectionUnderline center>{project.title}</SectionUnderline>
 
-        <p className="text-gray-400 text-sm mb-6 text-center">{project.subtitle}</p>
+        {/* Subtitle in glass-white */}
+        <div className="flex justify-center mb-6">
+  <div className="glass-subtitle max-w-3xl text-center text-sm">
+    {project.subtitle}
+  </div>
+</div>
 
+
+        {/* Image: inner border (black or white), outer border (primary) */}
         {project.image && (
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full max-h-[400px] object-cover rounded-lg border border-white/20 mb-8"
-          />
-        )}
+  <div className="mb-8 p-1 rounded-lg border-[3px] border-primary">
+    <FramedImage
+      src={project.image}
+      alt={project.title}
+      className=""
+    />
+  </div>
+)}
 
-        {project.description && (
-          <p className="text-gray-300 leading-relaxed mb-6">{project.description}</p>
-        )}
 
         {/* Tags */}
         {project.tags && project.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap justify-center gap-2 mb-6">
             {project.tags.map((tag, index) => (
               <span
                 key={index}
-                className="bg-primary-alt text-black dark:text-white px-3 py-1 text-xs rounded"
+                className="bg-primary-alt text-gray-800 font-semibold px-3 py-1 text-xs rounded"
               >
                 {tag}
               </span>
@@ -77,37 +90,28 @@ export default function ProjectDetail() {
           </div>
         )}
 
-        {/* Links */}
-        <div className="flex gap-6 text-sm mb-6">
-          {project.github && (
-            <a
-              href={project.github}
-              className="text-primary-alt underline hover:opacity-80 transition"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub Repository
+        {/* GitHub Button */}
+        {project.github && (
+          <div className="mt-6 text-center">
+            <a href={project.github} target="_blank" rel="noopener noreferrer">
+              <button className="uiverse-button mb-6">
+                Direct GitHub Repository
+              </button>
             </a>
-          )}
-          {project.liveDemo && (
-            <a
-              href={project.liveDemo}
-              className="text-primary-alt underline hover:opacity-80 transition"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Live Demo
-            </a>
-          )}
-        </div>
+          </div>
+        )}
 
-        {/* Back Link */}
-        <div className="mt-10 text-center">
-          <Link
-            to="/projects"
-            className="text-sm text-white underline hover:text-primary-alt transition"
-          >
-            ← Back to Projects
+        {/* Markdown README */}
+        {readmeFile && (
+          <div className="prose dark:prose-invert max-w-none mb-10 mt-10 px-2">
+            <ReactMarkdown>{readmeFile}</ReactMarkdown>
+          </div>
+        )}
+
+        {/* Back Button */}
+        <div className="mt-6 text-center">
+          <Link to="/projects">
+            <button className="uiverse-button">Back to Projects</button>
           </Link>
         </div>
       </div>

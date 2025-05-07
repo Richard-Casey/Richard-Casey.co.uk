@@ -6,7 +6,7 @@ import SectionDivider from "../components/SectionDivider";
 import { useGitHubProjectsContext } from "../context/GitHubProjectsContext";
 import projectImageMap from "../data/projectImageMap";
 import SectionUnderline from "../components/SectionUnderline";
-
+import TagScroller from "../components/TagScroller";
 
 function Projects() {
   const { repos: projects, loading } = useGitHubProjectsContext();
@@ -29,41 +29,31 @@ function Projects() {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.6 }}
       >
-<div className="text-center mb-10">
-  <SectionUnderline className="text-primary-alt">Projects</SectionUnderline>
-</div>
-
+        <div className="text-center mb-10">
+          <SectionUnderline className="text-primary-alt">
+            Projects
+          </SectionUnderline>
+        </div>
 
         {/* Tag Filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {allTags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => setActiveTag(tag)}
-              className={`px-4 py-1 rounded-full text-sm border transition
-                ${activeTag === tag
-                  ? "bg-primary-alt text-black dark:text-white font-bold"
-                  : "border-gray-400 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800"}
-              `}
-              
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
+        <TagScroller
+          tags={allTags}
+          activeTag={activeTag}
+          onTagClick={setActiveTag}
+        />
 
         <SectionDivider />
 
         {/* Project Grid */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
           {filteredProjects.map((project) => {
             const imageFile =
-              projectImageMap[project.title] || `${project.title}.png`;
+              projectImageMap[project.slug] || `${project.slug}.png`;
 
             return (
               <div
                 key={project.id}
-                className="p-1 border-2 border-black dark:border-white rounded-lg"
+                className="w-full sm:w-[23rem] p-1 border-2 border-black dark:border-white rounded-lg"
               >
                 <div className="glass-blue p-4 border-2 border-primary rounded-lg shadow-md flex flex-col justify-between">
                   <img
@@ -79,10 +69,10 @@ function Projects() {
                   />
 
                   <div className="glass-white mt-auto p-3 h-36 flex flex-col justify-center text-center border-2 border-black dark:border-white rounded overflow-hidden">
-                    <h3 className="font-bold text-lg sm:text-base underline whitespace-nowrap overflow-hidden text-ellipsis -mt-3">
+                    <h3 className="font-bold text-lg underline whitespace-nowrap overflow-hidden text-ellipsis -mt-3">
                       {project.title}
                     </h3>
-                    <p className="text-xs mt-0.5 overflow-hidden text-ellipsis line-clamp-6 leading-tight">
+                    <p className="text-sm mt-0.5 overflow-hidden text-ellipsis line-clamp-6 leading-tight">
                       {project.subtitle}
                     </p>
                   </div>

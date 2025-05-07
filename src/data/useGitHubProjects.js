@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import topicTagMap from "./tagMap";
+import projectMeta from "./projectMeta";
 
 const GITHUB_USERNAME = "Richard-Casey";
 const EXCEPTION_TITLES = {
@@ -9,20 +9,25 @@ const EXCEPTION_TITLES = {
 export default function useGitHubProjects(limit = 100) {
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [lastUpdated, setLastUpdated] = useState(null);
 
   useEffect(() => {
     const fetchRepos = async () => {
       try {
-        const token = process.env.REACT_APP_GITHUB_PAT;
+        const cached = localStorage.getItem("github_repos_cache");
+        const cachedTime = localStorage.getItem("github_repos_cache_time");
+        const isFresh =
+          cached && cachedTime && Date.now() - cachedTime < 60 * 60 * 1000;
 
-        const isDev = process.env.NODE_ENV === "development";
-
-        const headers =
-          isDev && token ? { Authorization: `Bearer ${token}` } : {};
+        if (isFresh) {
+          setRepos(JSON.parse(cached));
+          setLastUpdated(parseInt(cachedTime));
+          setLoading(false);
+          return;
+        }
 
         const res = await fetch(
-          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=created&direction=desc&per_page=${limit}`,
-          { headers }
+          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=created&direction=desc&per_page=${limit}`
         );
 
         const baseRepos = await res.json();
@@ -31,50 +36,36 @@ export default function useGitHubProjects(limit = 100) {
           .filter((repo) => !repo.fork && !repo.private)
           .slice(0, limit);
 
-        const enrichedRepos = await Promise.all(
-          filtered.map(async (repo) => {
-            // Topics fetch with combined headers
-            const topicRes = await fetch(
-              `https://api.github.com/repos/${GITHUB_USERNAME}/${repo.name}/topics`,
-              {
-                headers: {
-                  Accept: "application/vnd.github.mercy-preview+json",
-                  ...(isDev && token
-                    ? { Authorization: `Bearer ${token}` }
-                    : {}),
-                },
-              }
-            );
+        const enrichedRepos = filtered.map((repo) => {
+          const rawName = repo.name;
+          const slug = rawName.toLowerCase();
+          const displayTitle =
+            EXCEPTION_TITLES[rawName] ||
+            rawName.replace(/-/g, " ").replace(/([a-z])([A-Z])/g, "$1 $2");
 
-            const topicData = await topicRes.json();
-            const topics = topicData.names || [];
+          const meta = projectMeta[slug] || {};
 
-            const mappedTags = topics.map(
-              (t) => topicTagMap[t] || topicTagMap.default
-            );
-            const uniqueTags = [...new Set(mappedTags)];
+          return {
+            id: repo.id,
+            title: displayTitle,
+            subtitle: repo.description || "No description provided.",
+            github: repo.html_url,
+            liveDemo: repo.homepage || null,
+            tags: meta.tags || [repo.language || "Unknown"],
+            image: `/images/projects/${slug}.png`,
+            slug,
+            readme: meta.readme || null,
+          };
+        });
 
-            const rawName = repo.name;
-            const displayTitle =
-              EXCEPTION_TITLES[rawName] ||
-              rawName.replace(/-/g, " ").replace(/([a-z])([A-Z])/g, "$1 $2");
-
-            return {
-              id: repo.id,
-              title: displayTitle,
-              subtitle: repo.description || "No description provided.",
-              github: repo.html_url,
-              liveDemo: repo.homepage || null,
-              tags: uniqueTags.length
-                ? uniqueTags
-                : [repo.language || "Unknown"],
-              image: "/images/projects/default.png",
-              slug: rawName.toLowerCase(),
-            };
-          })
+        localStorage.setItem(
+          "github_repos_cache",
+          JSON.stringify(enrichedRepos)
         );
+        localStorage.setItem("github_repos_cache_time", Date.now());
 
         setRepos(enrichedRepos);
+        setLastUpdated(Date.now());
         setLoading(false);
       } catch (err) {
         console.error("Failed to fetch repos:", err);
@@ -85,5 +76,5 @@ export default function useGitHubProjects(limit = 100) {
     fetchRepos();
   }, [limit]);
 
-  return { repos, loading };
+  return { repos, loading, lastUpdated };
 }

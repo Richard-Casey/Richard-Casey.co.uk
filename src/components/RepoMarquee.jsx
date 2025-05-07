@@ -4,11 +4,11 @@ import projectImageMap from "../data/projectImageMap";
 
 function RepoMarquee({ repos }) {
   const ReviewCard = ({ project }) => {
-    const imageFile = projectImageMap[project.title] || `${project.title}.png`;
+    const imageFile = projectImageMap[project.slug] || `${project.slug}.png`;
 
     return (
-        <div className="w-72 flex-shrink-0 p-1 border-2 border-black dark:border-white rounded-lg hover:scale-[1.05] transition-transform duration-300 mx-1">
-      <div className="glass-blue p-4 border-2 border-primary rounded-lg shadow-md flex flex-col justify-between h-full">
+      <div className="w-72 flex-shrink-0 p-1 border-2 border-black dark:border-white rounded-lg hover:scale-[1.05] transition-transform duration-300 mx-1">
+        <div className="glass-blue p-4 border-2 border-primary rounded-lg shadow-md flex flex-col justify-between h-full">
           <img
             src={`/images/projects/${imageFile}`}
             alt={project.title}

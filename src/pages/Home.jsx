@@ -24,7 +24,7 @@ const topProjects = [
 ];
 
 function Home() {
-  const { repos, loading } = useGitHubProjectsContext();
+  const { repos, loading, lastUpdated } = useGitHubProjectsContext();
 
   return (
     <motion.div
@@ -74,7 +74,6 @@ function Home() {
           <FadeInSection className="mt-0 max-w-6xl mx-auto">
             <div className="flex-1 text-center md:text-left">
               <SectionUnderline>About&nbsp;Me</SectionUnderline>
-
               <p className="text-gray-800 dark:text-gray-300 leading-relaxed">
                 I’m a Suffolk-based developer with a passion for honest,
                 effective, and efficient software. With a strong background in
@@ -86,16 +85,36 @@ function Home() {
             </div>
           </FadeInSection>
         </section>
-
         <SectionDivider />
       </FadeInSection>
 
       <section className="mt-8 max-w-6xl mx-auto">
-        <FadeInSection className="mt-0 max-w-6xl mx-auto">
+        <FadeInSection>
           <SectionUnderline>Top&nbsp;Projects</SectionUnderline>
         </FadeInSection>
-        <FadeInSection className="mt-0 max-w-6xl mx-auto"></FadeInSection>
-        <FadeInSection className="mt-0 max-w-6xl mx-auto">
+
+        {process.env.NODE_ENV === "development" && (
+          <div className="text-center mt-2 mb-2">
+            <button
+              className="text-sm text-primary underline"
+              onClick={() => {
+                localStorage.removeItem("github_repos_cache");
+                localStorage.removeItem("github_repos_cache_time");
+                window.location.reload();
+              }}
+            >
+              Force refresh project cache
+            </button>
+          </div>
+        )}
+
+        {lastUpdated && (
+          <p className="text-xs text-gray-500 dark:text-gray-400 text-center mb-4">
+            Last updated: {new Date(lastUpdated).toLocaleString()}
+          </p>
+        )}
+
+        <FadeInSection>
           {loading ? (
             <p className="text-center text-gray-500 dark:text-gray-400">
               Loading top projects...
@@ -141,6 +160,7 @@ function Home() {
             </div>
           )}
         </FadeInSection>
+
         <div className="mt-6 text-center">
           <Link to="/projects">
             <button className="uiverse-button">View All Projects</button>

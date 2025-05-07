@@ -19,3 +19,4 @@ export default function FramedImage({ src, alt, className = "" }) {
       </div>
     );
   }
+  

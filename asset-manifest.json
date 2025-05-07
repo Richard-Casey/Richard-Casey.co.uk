@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.da98e177.css",
-    "main.js": "/static/js/main.30a3a3fd.js",
+    "main.css": "/static/css/main.b8125669.css",
+    "main.js": "/static/js/main.cdf1d34c.js",
     "static/media/landing.png": "/static/media/landing.75ac162f23658cff01ae.png",
     "static/media/stock-and-shop.png": "/static/media/stock-and-shop.e90fbbea99ea9c2b6c18.png",
     "static/media/mecropped2.png": "/static/media/mecropped2.737de79e349d9856f0f6.png",
@@ -18,17 +18,19 @@
     "static/media/codewars-practice-c-sharp.png": "/static/media/codewars-practice-c-sharp.f7463a43b7cdbb14a795.png",
     "static/media/c-plus-plus-exercises.png": "/static/media/c-plus-plus-exercises.8326fe421956df18ca62.png",
     "static/media/richard-casey.png": "/static/media/richard-casey.57d75f6c081c06b7576d.png",
+    "static/media/the-other-half-hub-website.png": "/static/media/the-other-half-hub-website.ecb0a46d5f6c8e6f5db1.png",
     "static/media/pet-system.png": "/static/media/pet-system.35e3f411cc763a6185ec.png",
-    "static/media/the-other-half-hub-website.png": "/static/media/the-other-half-hub-website.ea8444beb2586c6a1403.png",
+    "static/media/Logo1.png": "/static/media/Logo1.bdae86d85f761e34b563.png",
+    "static/media/default.png": "/static/media/default.306e7a50237972a2330e.png",
+    "static/media/richard-casey.co.uk.png": "/static/media/richard-casey.co.uk.7ee1ff6c0d215afc41cc.png",
     "static/media/objects-and-types-miles-to-km.png": "/static/media/objects-and-types-miles-to-km.c8dbe65c4e5f4e58e842.png",
-    "static/media/Logo1.png": "/static/media/Logo1.3b0a548952b329cd91cc.png",
-    "static/media/default.png": "/static/media/default.3b0a548952b329cd91cc.png",
+    "static/media/Symbol1.png": "/static/media/Symbol1.b7d26a059dfcceee96b4.png",
     "index.html": "/index.html",
-    "main.da98e177.css.map": "/static/css/main.da98e177.css.map",
-    "main.30a3a3fd.js.map": "/static/js/main.30a3a3fd.js.map"
+    "main.b8125669.css.map": "/static/css/main.b8125669.css.map",
+    "main.cdf1d34c.js.map": "/static/js/main.cdf1d34c.js.map"
   },
   "entrypoints": [
-    "static/css/main.da98e177.css",
-    "static/js/main.30a3a3fd.js"
+    "static/css/main.b8125669.css",
+    "static/js/main.cdf1d34c.js"
   ]
 }

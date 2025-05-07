@@ -42,17 +42,14 @@ export default function ProjectDetail() {
       <div className="max-w-5xl mx-auto px-6 py-12">
         <SectionUnderline center>{project.title}</SectionUnderline>
 
-        {/* Subtitle in glass-white */}
-        <div className="flex justify-center mb-6">
-          <div className="glass-subtitle max-w-3xl text-center text-sm">
-            {project.subtitle}
-          </div>
-        </div>
-
-        {/* Image: inner border (black or white), outer border (primary) */}
+        {/* Image */}
         {project.image && (
           <div className="mb-8 p-1 rounded-lg border-[3px] border-primary">
-            <FramedImage src={project.image} alt={project.title} className="" />
+            <FramedImage
+              src={project.image}
+              alt={project.title}
+              className="h-[350px] w-full object-contain"
+            />
           </div>
         )}
 
@@ -67,6 +64,15 @@ export default function ProjectDetail() {
                 {tag}
               </span>
             ))}
+          </div>
+        )}
+
+        {/* Subtitle in glass-white */}
+        {project.subtitle && (
+          <div className="flex justify-center mb-6">
+            <div className="glass-subtitle max-w-full text-center text-sm">
+              {project.subtitle}
+            </div>
           </div>
         )}
 
@@ -95,12 +101,14 @@ export default function ProjectDetail() {
           </div>
         )}
 
-        {/* Markdown README */}
-        {readmeFile && (
-          <div className="prose dark:prose-invert max-w-none mb-10 mt-10 px-2">
-            <ReactMarkdown>{readmeFile}</ReactMarkdown>
-          </div>
-        )}
+{/* Markdown README */}
+{readmeFile && (
+  <div className="glass-readme prose prose-light dark:prose-dark max-w-none mb-10 mt-10 px-2">
+
+    <ReactMarkdown>{readmeFile}</ReactMarkdown>
+  </div>
+)}
+
 
         {/* Back Button */}
         <div className="mt-6 text-center">

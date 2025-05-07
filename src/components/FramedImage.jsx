@@ -8,7 +8,7 @@ export default function FramedImage({ src, alt, className = "" }) {
         <img
           src={src}
           alt={alt}
-          className="w-full h-auto object-cover rounded-md"
+          className="w-full h-full object-cover rounded-md"
           onError={(e) => {
             if (!e.target.dataset.fallback) {
               e.target.dataset.fallback = true;

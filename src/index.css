@@ -140,12 +140,12 @@ code {
 }
 
 .glass-subtitle {
-  background: rgb(255, 255, 255); /* translucent base */
+  background: #009ce56b; /* translucent base */
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border-radius: 0.5rem;
   padding: 1rem;
-  border: 2px solid #009de5; /* always primary blue */
+  border: 2px solid #333; /* always primary blue */
   color: #333;
   font-size: medium;
   font-weight: 600;
@@ -153,8 +153,30 @@ code {
 }
 
 .dark .glass-subtitle {
-  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 0.733);
   color: #333;
+  border: 2px solid #009de5;
+  font-size: medium;
+  font-weight: 600;
+}
+
+.glass-readme {
+  background: #009ce56b; /* translucent base */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border: 2px solid #333; /* always primary blue */
+  color: #333;
+  font-size: medium;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.dark .glass-readme {
+  background: rgba(255, 255, 255, 0.733);
+  color: #333;
+  border: 2px solid #009de5;
   font-size: medium;
   font-weight: 600;
 }

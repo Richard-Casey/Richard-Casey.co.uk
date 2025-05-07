@@ -13,9 +13,18 @@ export default function useGitHubProjects(limit = 100) {
   useEffect(() => {
     const fetchRepos = async () => {
       try {
+        const token = process.env.REACT_APP_GITHUB_PAT;
+
+        const isDev = process.env.NODE_ENV === "development";
+
+        const headers =
+          isDev && token ? { Authorization: `Bearer ${token}` } : {};
+
         const res = await fetch(
-          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=created&direction=desc&per_page=${limit}`
+          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=created&direction=desc&per_page=${limit}`,
+          { headers }
         );
+
         const baseRepos = await res.json();
 
         const filtered = baseRepos
@@ -24,19 +33,25 @@ export default function useGitHubProjects(limit = 100) {
 
         const enrichedRepos = await Promise.all(
           filtered.map(async (repo) => {
-            // Fetch topics separately
+            // Topics fetch with combined headers
             const topicRes = await fetch(
               `https://api.github.com/repos/${GITHUB_USERNAME}/${repo.name}/topics`,
               {
                 headers: {
                   Accept: "application/vnd.github.mercy-preview+json",
+                  ...(isDev && token
+                    ? { Authorization: `Bearer ${token}` }
+                    : {}),
                 },
               }
             );
+
             const topicData = await topicRes.json();
             const topics = topicData.names || [];
 
-            const mappedTags = topics.map((t) => topicTagMap[t] || topicTagMap.default);
+            const mappedTags = topics.map(
+              (t) => topicTagMap[t] || topicTagMap.default
+            );
             const uniqueTags = [...new Set(mappedTags)];
 
             const rawName = repo.name;
@@ -50,7 +65,9 @@ export default function useGitHubProjects(limit = 100) {
               subtitle: repo.description || "No description provided.",
               github: repo.html_url,
               liveDemo: repo.homepage || null,
-              tags: uniqueTags.length ? uniqueTags : [repo.language || "Unknown"],
+              tags: uniqueTags.length
+                ? uniqueTags
+                : [repo.language || "Unknown"],
               image: "/images/projects/default.png",
               slug: rawName.toLowerCase(),
             };
